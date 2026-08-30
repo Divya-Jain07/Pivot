@@ -31,7 +31,6 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         logger.info("Initializing database with seed data...");
-        logger.info("Loaded Mongo URI: {}", mongoUri);
 
         // Clear existing data for a clean start on each run (optional, useful for testing)
         productRepository.deleteAll();
