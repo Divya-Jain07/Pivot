@@ -43,6 +43,10 @@ public class AgentDecision {
     @Builder
     public static class Candidate {
         private String action; // E.g., "Buy PRODUCT_A", "Buy PRODUCT_A with 10% discount"
+        private String productId;
+        private double amount;
+        private double discount;
+        private double finalAmount;
         private Factors factors;
         private Map<String, Double> weights;
         private double finalScore;

@@ -55,8 +55,22 @@ public class DecisionPipelineService {
 
         // Map candidates to AgentDecision format
         List<AgentDecision.Candidate> mappedCandidates = candidates.stream()
-                .map(c -> AgentDecision.Candidate.builder()
+                .map(c -> {
+                    double amount = c.getBaseProduct().getPrice();
+                    if (c.getBundledProducts() != null) {
+                        for (var p : c.getBundledProducts()) {
+                            amount += p.getPrice();
+                        }
+                    }
+                    double discountVal = amount * (c.getDiscountPercent() / 100.0);
+                    double finalAmount = amount - discountVal;
+                    
+                    return AgentDecision.Candidate.builder()
                         .action(c.getActionName())
+                        .productId(c.getBaseProduct().getProductId())
+                        .amount(amount)
+                        .discount(discountVal)
+                        .finalAmount(finalAmount)
                         .status(c.getStatus())
                         .finalScore(c.getFinalScore())
                         .factors(AgentDecision.Factors.builder()
@@ -73,7 +87,8 @@ public class DecisionPipelineService {
                                 "strategicValue", 0.10,
                                 "offerSuitability", 0.10
                         ))
-                        .build())
+                        .build();
+                })
                 .collect(Collectors.toList());
 
         AgentDecision.Candidate mappedSelected = null;
