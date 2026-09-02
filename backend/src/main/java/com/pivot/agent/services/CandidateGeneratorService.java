@@ -49,7 +49,7 @@ public class CandidateGeneratorService {
                     .status("CONSIDERED")
                     .build());
 
-            // Generate BUNDLE actions
+            // Generate BUNDLE actions from predefined cross-sells
             if (product.getCrossSell() != null) {
                 for (String crossId : product.getCrossSell()) {
                     productRepository.findById(crossId).ifPresent(crossProd -> {
@@ -62,6 +62,33 @@ public class CandidateGeneratorService {
                                 .status("CONSIDERED")
                                 .build());
                     });
+                }
+            }
+
+            // Generate EXPLICIT DYNAMIC BUNDLE action
+            if (state.requestedItems() != null && !state.requestedItems().isEmpty()) {
+                List<Product> dynamicBundle = new ArrayList<>();
+                for (String reqItem : state.requestedItems()) {
+                    productRepository.findAll().stream()
+                        .filter(p -> (p.getCategory() != null && p.getCategory().toLowerCase().contains(reqItem.toLowerCase())) || 
+                                     (p.getName() != null && p.getName().toLowerCase().contains(reqItem.toLowerCase())))
+                        .findFirst()
+                        .ifPresent(dynamicBundle::add);
+                }
+                
+                if (!dynamicBundle.isEmpty()) {
+                    StringBuilder bundleName = new StringBuilder("Buy " + product.getName());
+                    for (Product bp : dynamicBundle) {
+                        bundleName.append(" + ").append(bp.getName());
+                    }
+                    candidates.add(ActionCandidate.builder()
+                            .actionName(bundleName.toString())
+                            .baseProduct(product)
+                            .bundledProducts(dynamicBundle)
+                            .discountPercent(0.0)
+                            .type("BUNDLE")
+                            .status("CONSIDERED")
+                            .build());
                 }
             }
 

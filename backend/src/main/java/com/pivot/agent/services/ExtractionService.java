@@ -15,14 +15,15 @@ public class ExtractionService {
 
     public ExtractedState extractIntent(String message, ExtractedState previousState) {
         String prevContext = previousState != null ? 
-            String.format("Previous State: Category='%s', Budget=%s, UseCase='%s', Sensitivity='%s'. Update this state based on the new message. If the new message doesn't change a field, keep the previous value.", 
-                previousState.category(), previousState.budget(), previousState.useCase(), previousState.priceSensitivity()) 
+            String.format("Previous State: Category='%s', Budget=%s, UseCase='%s', Sensitivity='%s', RequestedItems='%s'. Update this state based on the new message. If the new message doesn't change a field, keep the previous value.", 
+                previousState.category(), previousState.budget(), previousState.useCase(), previousState.priceSensitivity(), previousState.requestedItems()) 
             : "No previous state.";
 
         return chatClient.prompt()
                 .user(userSpec -> userSpec
                     .text("Extract the customer intent from this message: {message}. " +
                           "{prevContext} " +
+                          "Also extract any specific products or accessories the customer is explicitly asking to bundle into 'requestedItems' (as a list of strings). " +
                           "Return ONLY the requested fields. DO NOT include any numeric score fields like fitScore or confidence.")
                     .param("message", message)
                     .param("prevContext", prevContext))

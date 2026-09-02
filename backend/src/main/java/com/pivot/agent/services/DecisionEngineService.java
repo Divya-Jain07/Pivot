@@ -69,8 +69,25 @@ public class DecisionEngineService {
             if (p.getUseCases() != null && p.getUseCases().stream().anyMatch(u -> u.toLowerCase().contains(useCase) || useCase.contains(u.toLowerCase()))) {
                 score += 30;
             }
+            if (p.getFeatures() != null && p.getFeatures().stream().anyMatch(f -> f.toLowerCase().contains(useCase) || useCase.contains(f.toLowerCase()))) {
+                score += 20;
+            }
             if (p.getTags() != null && p.getTags().stream().anyMatch(t -> t.toLowerCase().contains(useCase) || useCase.contains(t.toLowerCase()))) {
                 score += 20;
+            }
+            
+            if (candidate.getBundledProducts() != null) {
+                for (Product bp : candidate.getBundledProducts()) {
+                    if (bp.getUseCases() != null && bp.getUseCases().stream().anyMatch(u -> u.toLowerCase().contains(useCase) || useCase.contains(u.toLowerCase()))) {
+                        score += 20;
+                    }
+                    if (bp.getFeatures() != null && bp.getFeatures().stream().anyMatch(f -> f.toLowerCase().contains(useCase) || useCase.contains(f.toLowerCase()))) {
+                        score += 15;
+                    }
+                    if (bp.getTags() != null && bp.getTags().stream().anyMatch(t -> t.toLowerCase().contains(useCase) || useCase.contains(t.toLowerCase()))) {
+                        score += 15;
+                    }
+                }
             }
         }
         return Math.min(100.0, score);
@@ -115,6 +132,14 @@ public class DecisionEngineService {
         Product p = candidate.getBaseProduct();
         if (p.getTags() != null && p.getTags().contains(primaryObjective)) {
             return 100.0;
+        }
+        
+        if (candidate.getBundledProducts() != null) {
+            for (Product bp : candidate.getBundledProducts()) {
+                if (bp.getTags() != null && bp.getTags().contains(primaryObjective)) {
+                    return 85.0;
+                }
+            }
         }
         return 50.0;
     }
