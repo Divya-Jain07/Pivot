@@ -3,7 +3,7 @@ package com.pivot.agent.services;
 import com.pivot.agent.dto.ActionCandidate;
 import com.pivot.agent.models.Merchant;
 import com.pivot.agent.models.Product;
-import com.pivot.agent.models.AgentDecision.ExtractedState;
+import com.pivot.agent.models.ExtractedState;
 import com.pivot.agent.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class CandidateGeneratorService {
     public List<ActionCandidate> generateCandidates(ExtractedState state, Merchant merchant) {
         List<ActionCandidate> candidates = new ArrayList<>();
         
-        List<Product> products = productRepository.findByCategory(state.getCategory());
+        List<Product> products = productRepository.findByCategory(state.category());
         if (products == null || products.isEmpty()) {
             products = productRepository.findAll();
         }
@@ -31,9 +31,9 @@ public class CandidateGeneratorService {
             if (product.getInventory() <= 0) continue;
             
             // Filter by category leniently (handle laptop vs laptops)
-            if (state.getCategory() != null) {
+            if (state.category() != null) {
                 String pCat = product.getCategory().toLowerCase();
-                String sCat = state.getCategory().toLowerCase();
+                String sCat = state.category().toLowerCase();
                 if (!pCat.contains(sCat) && !sCat.contains(pCat)) {
                     continue;
                 }

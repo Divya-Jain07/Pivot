@@ -48,14 +48,7 @@ public class ChatController {
         return decisionPipelineService.runPipeline(request.message(), updatedState);
     }
 
-    @PostMapping("/respond")
-    public String respond(@RequestBody ChatRequest request) {
-        // We expect the frontend to pass the decisionId in the request, or we can just fetch the latest for the user.
-        // But since ChatRequest only has message and sessionId, we could pass decisionId in message for testing.
-        // For a robust implementation, let's fetch the decision from the DB by decisionId.
-        // We will add a new record to accept decisionId.
-        return "Please use /respond-decision endpoint with decisionId";
-    }
+
 
     public record RespondRequest(String decisionId, String sessionId) {}
 

@@ -3,7 +3,7 @@ package com.pivot.agent.services;
 import com.pivot.agent.dto.ActionCandidate;
 import com.pivot.agent.models.Merchant;
 import com.pivot.agent.models.Product;
-import com.pivot.agent.models.AgentDecision.ExtractedState;
+import com.pivot.agent.models.ExtractedState;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -40,7 +40,7 @@ public class DecisionEngineService {
 
     private void scoreCandidate(ActionCandidate candidate, ExtractedState state, Merchant merchant) {
         double customerFit = calculateCustomerFit(candidate, state);
-        double budgetFit = calculateBudgetFit(candidate, state.getBudget());
+        double budgetFit = calculateBudgetFit(candidate, state.budget());
         double merchantValue = calculateMerchantValue(candidate);
         double strategicValue = calculateStrategicValue(candidate, merchant.getPrimaryObjective());
         double offerSuitability = calculateOfferSuitability(candidate, state);
@@ -63,8 +63,8 @@ public class DecisionEngineService {
 
     private double calculateCustomerFit(ActionCandidate candidate, ExtractedState state) {
         int score = 50;
-        if (state.getUseCase() != null) {
-            String useCase = state.getUseCase().toLowerCase();
+        if (state.useCase() != null) {
+            String useCase = state.useCase().toLowerCase();
             Product p = candidate.getBaseProduct();
             if (p.getUseCases() != null && p.getUseCases().stream().anyMatch(u -> u.toLowerCase().contains(useCase) || useCase.contains(u.toLowerCase()))) {
                 score += 30;
@@ -124,7 +124,7 @@ public class DecisionEngineService {
             return 100.0;
         }
         
-        String sensitivity = state.getPriceSensitivity() != null ? state.getPriceSensitivity().toLowerCase() : "medium";
+        String sensitivity = state.priceSensitivity() != null ? state.priceSensitivity().toLowerCase() : "medium";
         if ("high".equals(sensitivity)) {
             return 100.0;
         } else if ("low".equals(sensitivity)) {

@@ -28,16 +28,8 @@ public class DecisionPipelineService {
         Merchant merchant = merchantRepository.findAll().stream().findFirst()
                 .orElseThrow(() -> new RuntimeException("No merchant found in DB"));
 
-        // Convert the record to AgentDecision's nested state class
-        AgentDecision.ExtractedState nestedState = AgentDecision.ExtractedState.builder()
-                .category(state.category())
-                .useCase(state.useCase())
-                .budget(state.budget())
-                .priceSensitivity(state.priceSensitivity())
-                .build();
-
         // 1. Generate Candidates
-        List<ActionCandidate> candidates = candidateGeneratorService.generateCandidates(nestedState, merchant);
+        List<ActionCandidate> candidates = candidateGeneratorService.generateCandidates(state, merchant);
         
         // 2. Enforce Policy
         List<ActionCandidate> passed = policyEngineService.enforcePolicy(candidates, merchant);
@@ -51,7 +43,7 @@ public class DecisionPipelineService {
                 .collect(Collectors.toList());
 
         // 3. Score & Select Best
-        ActionCandidate bestAction = decisionEngineService.selectBestCandidate(passed, nestedState, merchant);
+        ActionCandidate bestAction = decisionEngineService.selectBestCandidate(passed, state, merchant);
 
         // Map candidates to AgentDecision format
         List<AgentDecision.Candidate> mappedCandidates = candidates.stream()
@@ -102,7 +94,7 @@ public class DecisionPipelineService {
         AgentDecision decision = AgentDecision.builder()
                 .timestamp(Instant.now())
                 .customerInput(customerInput)
-                .extractedState(nestedState)
+                .extractedState(state)
                 .candidates(mappedCandidates)
                 .policyRejections(policyRejections)
                 .selectedAction(mappedSelected)

@@ -26,16 +26,7 @@ public class AgentDecision {
     private List<PolicyRejection> policyRejections;
     private Candidate selectedAction;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-    public static class ExtractedState {
-        private String category;
-        private String useCase;
-        private Double budget;
-        private String priceSensitivity;
-    }
+
 
     @Data
     @NoArgsConstructor
