@@ -124,7 +124,23 @@ public class CandidateGeneratorService {
                 }
             }
         }
+        List<ActionCandidate> uniqueCandidates = new ArrayList<>();
+        java.util.Set<String> seenSignatures = new java.util.HashSet<>();
+
+        for (ActionCandidate c : candidates) {
+            String bundleIds = "";
+            if (c.getBundledProducts() != null && !c.getBundledProducts().isEmpty()) {
+                bundleIds = c.getBundledProducts().stream()
+                        .map(Product::getProductId)
+                        .sorted()
+                        .collect(java.util.stream.Collectors.joining(","));
+            }
+            String signature = c.getBaseProduct().getProductId() + ":" + c.getType() + ":" + bundleIds + ":" + c.getDiscountPercent();
+            if (seenSignatures.add(signature)) {
+                uniqueCandidates.add(c);
+            }
+        }
         
-        return candidates;
+        return uniqueCandidates;
     }
 }

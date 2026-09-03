@@ -7,5 +7,6 @@ public record ExtractedState(
     String useCase,
     Double budget,
     String priceSensitivity,
-    List<String> requestedItems
+    List<String> requestedItems,
+    Double requestedDiscountPercent
 ) {}
