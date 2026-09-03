@@ -28,9 +28,11 @@ public class ResponsePhrasingService {
             Double reqDiscount = decision.getExtractedState().requestedDiscountPercent();
             
             String selectedId = decision.getSelectedAction() != null ? decision.getSelectedAction().getAction() : "";
+            String selectedProductId = decision.getSelectedAction() != null ? decision.getSelectedAction().getProductId() : null;
             
             consideredAlternative = decision.getCandidates().stream()
                 .filter(c -> "CONSIDERED".equals(c.getStatus()) && !c.getAction().equals(selectedId))
+                .filter(c -> selectedProductId == null || selectedProductId.equals(c.getProductId()))
                 .filter(c -> {
                     boolean matchesItem = false;
                     if (requestedItems != null && !requestedItems.isEmpty()) {
