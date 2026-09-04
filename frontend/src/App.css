@@ -1,0 +1,25 @@
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.left-panel {
+  width: 60%;
+  height: 100%;
+  background-color: var(--color-bg-primary);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel {
+  width: 40%;
+  height: 100%;
+  background-color: var(--color-bg-terminal);
+  border-left: 1px solid var(--color-terminal-border);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

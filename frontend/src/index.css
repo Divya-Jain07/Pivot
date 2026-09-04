@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Colors */
+  --color-bg-primary: #F9F9F8; /* Cool neutral off-white for conversation side */
+  --color-bg-terminal: #0A0A0C; /* Dark almost-black for terminal side */
+  --color-accent: #000000; /* Jet black accent for Pivot logotype and primary CTA only */
+  --color-accent-hover: #1A1A1A;
+  
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #5A5A5A;
+  --color-text-muted: #999999;
+  
+  --color-terminal-text: #E0E0E0;
+  --color-terminal-muted: #888888;
+  --color-terminal-selected: #4ADE80; /* Green for selected */
+  --color-terminal-rejected: #F87171; /* Red for rejected */
+  --color-terminal-considered: #9CA3AF; /* Gray for considered */
+  
+  --color-chat-bubble-user: #FFFFFF;
+  --color-chat-bubble-ai: transparent;
+  
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-terminal-border: rgba(255, 255, 255, 0.1);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.08);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  overflow: hidden; /* App controls its own scrolling */
+}
+
+/* Base Utility Classes */
+.text-accent {
+  color: var(--color-accent);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Custom Scrollbar for Terminal */
+.terminal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Main Layout */
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
