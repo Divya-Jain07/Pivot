@@ -32,7 +32,7 @@ public class DecisionPipelineService {
         List<ActionCandidate> candidates = candidateGeneratorService.generateCandidates(state, merchant);
         
         // 2. Enforce Policy
-        List<ActionCandidate> passed = policyEngineService.enforcePolicy(candidates, merchant);
+        List<ActionCandidate> passed = policyEngineService.enforcePolicy(candidates, merchant, state);
         
         List<AgentDecision.PolicyRejection> policyRejections = candidates.stream()
                 .filter(c -> "REJECTED".equals(c.getStatus()))

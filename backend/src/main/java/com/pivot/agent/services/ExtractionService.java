@@ -23,9 +23,15 @@ public class ExtractionService {
                 .user(userSpec -> userSpec
                     .text("Extract the customer intent from this message: {message}. " +
                           "{prevContext} " +
-                          "Also extract any specific products or accessories the customer is explicitly asking to bundle into 'requestedItems' (as a list of strings). " +
-                          "Also extract any specific discount percentage the customer explicitly asked for into 'requestedDiscountPercent' (as a Double, e.g., 5.0 for 5%). " +
-                          "Return ONLY the requested fields. DO NOT include any numeric score fields like fitScore or confidence.")
+                          "GROUND RULES: " +
+                          "- Return ONLY the requested fields. DO NOT include any numeric score fields like fitScore or confidence.\n" +
+                          "- requestedDiscountPercent must be a Double (e.g., 5.0 for 5%).\n" +
+                          "- isStrictBudget is true if they imply a hard ceiling.\n" +
+                          "- negativePreferences is a list of things they explicitly or implicitly reject.\n\n" +
+                          "EXAMPLES:\n" +
+                          "User: 'I want a laptop under 80000, maybe with a bag' -> budget: 80000, requestedItems: ['bag'], isStrictBudget: false, negativePreferences: []\n" +
+                          "User: 'stick to the budget! just the laptop' -> isStrictBudget: true, negativePreferences: ['bundle', 'accessories']\n" +
+                          "User: 'I can't go over 50k and I hate AMD' -> budget: 50000, isStrictBudget: true, negativePreferences: ['AMD']")
                     .param("message", message)
                     .param("prevContext", prevContext))
                 .call()

@@ -45,21 +45,20 @@ public class DatabaseSeeder implements CommandLineRunner {
         merchantRepository.deleteAll();
 
         try {
-            File seedFile = new File("dataseed.json");
-            if (!seedFile.exists()) {
-                seedFile = new File("../dataseed.json");
-            }
-            if (seedFile.exists()) {
-                SeedData data = objectMapper.readValue(seedFile, SeedData.class);
-                if (data.products != null) {
-                    productRepository.saveAll(data.products);
+            org.springframework.core.io.ClassPathResource resource = new org.springframework.core.io.ClassPathResource("dataseed.json");
+            if (resource.exists()) {
+                try (java.io.InputStream inputStream = resource.getInputStream()) {
+                    SeedData data = objectMapper.readValue(inputStream, SeedData.class);
+                    if (data.products != null) {
+                        productRepository.saveAll(data.products);
+                    }
+                    if (data.merchant != null) {
+                        merchantRepository.save(data.merchant);
+                    }
+                    logger.info("Successfully loaded data from classpath:dataseed.json");
                 }
-                if (data.merchant != null) {
-                    merchantRepository.save(data.merchant);
-                }
-                logger.info("Successfully loaded data from {}", seedFile.getAbsolutePath());
             } else {
-                logger.warn("dataseed.json not found! Checked current directory and parent directory.");
+                logger.warn("classpath:dataseed.json not found!");
             }
         } catch (Exception e) {
             logger.error("Error reading dataseed.json", e);

@@ -8,5 +8,7 @@ public record ExtractedState(
     Double budget,
     String priceSensitivity,
     List<String> requestedItems,
-    Double requestedDiscountPercent
+    Double requestedDiscountPercent,
+    Boolean isStrictBudget,
+    List<String> negativePreferences
 ) {}

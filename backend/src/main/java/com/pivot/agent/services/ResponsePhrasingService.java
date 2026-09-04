@@ -56,6 +56,17 @@ public class ResponsePhrasingService {
         String consideredAltStr = consideredAlternative != null ? 
             consideredAlternative.getAction() + " (Price: " + consideredAlternative.getFinalAmount() + ")" : "None";
 
+        Double budget = decision.getExtractedState() != null ? decision.getExtractedState().budget() : null;
+        Double selectedFinalPrice = decision.getSelectedAction() != null ? decision.getSelectedAction().getFinalAmount() : null;
+        String budgetContext = "";
+        if (budget != null && selectedFinalPrice != null) {
+            if (selectedFinalPrice > budget) {
+                budgetContext = String.format("Note: The recommended action costs %.2f, which EXCEEDS the customer's budget of %.2f. You MUST NOT claim it fits their budget. Acknowledge it is slightly over budget but frame it as a worthy upgrade.", selectedFinalPrice, budget);
+            } else {
+                budgetContext = String.format("Note: The recommended action costs %.2f, which is within the customer's budget of %.2f.", selectedFinalPrice, budget);
+            }
+        }
+
         String prompt = """
             You are a helpful and persuasive AI Merchant Sales Agent. 
             
@@ -71,17 +82,22 @@ public class ResponsePhrasingService {
             Considered but Unselected Alternative (if customer asked for it):
             %s
             
+            BUDGET CONTEXT:
+            %s
+            
             INSTRUCTIONS:
             1. You MUST NOT invent any new products, discounts, or bundles. You are strictly a spokesperson for the backend decision.
             2. Phrase the recommended action naturally and persuasively to the customer.
             3. If the customer's request matches a CONSIDERED candidate (not selected), offer it honestly as a real option with its actual price, noting the currently selected option scores slightly better on overall value. Never state that a considered-but-unselected option is unavailable, already at best pricing, or lacking in some invented way. Only use policy language ('I'm not able to offer that') for candidates that appear in policyRejections with a real reason.
             4. If the customer explicitly asked for a discount or an option that was rejected, gracefully explain why it's not possible. The rejection reason provided is an INTERNAL system reason (like profit margins). You MUST translate it into a polite, customer-facing excuse (e.g., "That discount exceeds our current promotional limits", "This item is already priced as low as possible"). DO NOT ever expose internal profit margins or backend metrics to the customer.
             5. IMPORTANT CONTEXT: Read the conversation history! If the recommended action is the exact same item/bundle that was already pitched in the previous turn, you MUST frame your response as a continuation of the conversation (e.g., "I know you're looking for a deal on this bundle, but it is truly our best value..."). DO NOT pitch the item as if you are introducing it for the very first time.
-            6. Keep your response concise, friendly, and professional. Do not show the math or scores, just talk to the customer.
+            6. BUDGET HONESTY: Strictly adhere to the BUDGET CONTEXT. If it is over budget, do not pretend it is under budget.
+            7. PREFERENCE HONESTY: If the recommended option contains something the user explicitly said they didn't want (e.g. a bundle, or a specific brand), it means that option mathematically won because other options were out of stock or worse. Acknowledge this politely! (e.g. "I know you wanted just the laptop, but the standalone version is currently unavailable, so this bundle is the best remaining option...").
+            8. Keep your response concise, friendly, and professional. Do not show the math or scores, just talk to the customer.
             """;
 
         return chatClient.prompt()
-                .user(String.format(prompt, conversationHistory, selectedAction, rejections, consideredAltStr))
+                .user(String.format(prompt, conversationHistory, selectedAction, rejections, consideredAltStr, budgetContext))
                 .call()
                 .content();
     }

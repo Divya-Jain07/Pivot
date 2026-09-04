@@ -40,7 +40,7 @@ public class DecisionEngineService {
 
     private void scoreCandidate(ActionCandidate candidate, ExtractedState state, Merchant merchant) {
         double customerFit = calculateCustomerFit(candidate, state);
-        double budgetFit = calculateBudgetFit(candidate, state.budget());
+        double budgetFit = calculateBudgetFit(candidate, state);
         double merchantValue = calculateMerchantValue(candidate);
         double strategicValue = calculateStrategicValue(candidate, merchant.getPrimaryObjective());
         double offerSuitability = calculateOfferSuitability(candidate, state);
@@ -90,10 +90,21 @@ public class DecisionEngineService {
                 }
             }
         }
-        return Math.min(100.0, score);
+        if (state.negativePreferences() != null) {
+            for (String negPref : state.negativePreferences()) {
+                String neg = negPref.toLowerCase();
+                if (candidate.getActionName().toLowerCase().contains(neg) || 
+                    candidate.getType().toLowerCase().contains(neg)) {
+                    score -= 50;
+                }
+            }
+        }
+        
+        return Math.max(0.0, Math.min(100.0, score));
     }
 
-    private double calculateBudgetFit(ActionCandidate candidate, Double budget) {
+    private double calculateBudgetFit(ActionCandidate candidate, ExtractedState state) {
+        Double budget = state.budget();
         if (budget == null || budget <= 0) return 50.0;
         
         double price = candidate.getBaseProduct().getPrice();
@@ -106,6 +117,11 @@ public class DecisionEngineService {
         
         double penalty = (Math.abs(price - budget) / budget) * 100.0;
         double fit = 100.0 - penalty;
+        
+        if (state.isStrictBudget() != null && state.isStrictBudget() && price > budget) {
+            fit -= 100.0;
+        }
+        
         return Math.max(0.0, Math.min(100.0, fit));
     }
 

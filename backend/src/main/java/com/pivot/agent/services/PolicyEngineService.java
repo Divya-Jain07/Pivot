@@ -3,6 +3,7 @@ package com.pivot.agent.services;
 import com.pivot.agent.dto.ActionCandidate;
 import com.pivot.agent.models.Merchant;
 import com.pivot.agent.models.Product;
+import com.pivot.agent.models.ExtractedState;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,11 +12,11 @@ import java.util.List;
 @Service
 public class PolicyEngineService {
 
-    public List<ActionCandidate> enforcePolicy(List<ActionCandidate> candidates, Merchant merchant) {
+    public List<ActionCandidate> enforcePolicy(List<ActionCandidate> candidates, Merchant merchant, ExtractedState state) {
         List<ActionCandidate> passed = new ArrayList<>();
         
         for (ActionCandidate candidate : candidates) {
-            String rejectionReason = evaluatePolicy(candidate, merchant);
+            String rejectionReason = evaluatePolicy(candidate, merchant, state);
             if (rejectionReason == null) {
                 passed.add(candidate);
             } else {
@@ -27,7 +28,7 @@ public class PolicyEngineService {
         return passed;
     }
 
-    private String evaluatePolicy(ActionCandidate candidate, Merchant merchant) {
+    private String evaluatePolicy(ActionCandidate candidate, Merchant merchant, ExtractedState state) {
         if (candidate.getBaseProduct().getInventory() <= 0) {
             return "Product is out of stock.";
         }
