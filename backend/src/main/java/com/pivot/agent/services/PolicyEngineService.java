@@ -13,19 +13,51 @@ import java.util.List;
 public class PolicyEngineService {
 
     public List<ActionCandidate> enforcePolicy(List<ActionCandidate> candidates, Merchant merchant, ExtractedState state) {
-        List<ActionCandidate> passed = new ArrayList<>();
+        List<ActionCandidate> mandatoryPassed = new ArrayList<>();
         
         for (ActionCandidate candidate : candidates) {
             String rejectionReason = evaluatePolicy(candidate, merchant, state);
             if (rejectionReason == null) {
-                passed.add(candidate);
+                mandatoryPassed.add(candidate);
             } else {
                 candidate.setStatus("REJECTED");
                 candidate.setRejectionReason(rejectionReason);
             }
         }
         
-        return passed;
+        List<ActionCandidate> preferencePassed = new ArrayList<>();
+        for (ActionCandidate candidate : mandatoryPassed) {
+            boolean preferenceViolated = false;
+            if (state.negativePreferences() != null) {
+                for (String negPref : state.negativePreferences()) {
+                    String neg = negPref.toLowerCase();
+                    if (candidate.getActionName().toLowerCase().contains(neg) || 
+                        candidate.getType().toLowerCase().contains(neg)) {
+                        preferenceViolated = true;
+                        break;
+                    }
+                }
+            }
+            if (!preferenceViolated) {
+                preferencePassed.add(candidate);
+            } else {
+                candidate.setStatus("REJECTED");
+                candidate.setRejectionReason("Excluded by customer preference");
+                candidate.setPreferenceCompromised(true);
+            }
+        }
+        
+        if (preferencePassed.isEmpty() && !mandatoryPassed.isEmpty()) {
+            for (ActionCandidate candidate : mandatoryPassed) {
+                if (candidate.isPreferenceCompromised()) {
+                    candidate.setStatus(null);
+                    candidate.setRejectionReason(null);
+                }
+            }
+            return mandatoryPassed;
+        }
+        
+        return preferencePassed;
     }
 
     private String evaluatePolicy(ActionCandidate candidate, Merchant merchant, ExtractedState state) {

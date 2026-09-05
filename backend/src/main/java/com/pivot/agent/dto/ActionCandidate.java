@@ -23,4 +23,5 @@ public class ActionCandidate {
     private double finalScore;
     private String status; // SELECTED, REJECTED, CONSIDERED
     private String rejectionReason;
+    private boolean preferenceCompromised;
 }

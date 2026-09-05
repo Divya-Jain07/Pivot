@@ -34,25 +34,45 @@ const RecommendationCard = ({ product }) => {
         </span>
       </div>
 
-      <button style={{
-        width: '100%',
-        padding: '0.875rem',
-        backgroundColor: 'var(--color-accent)',
-        color: 'white',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '1rem',
-        fontWeight: 500,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.5rem',
-        transition: 'var(--transition-fast)'
-      }}>
-        <ShieldCheck size={18} />
-        Pay with Razorpay
-      </button>
+      {product.paymentStatus === 'SUCCESS' ? (
+        <div style={{
+          width: '100%',
+          padding: '1rem',
+          backgroundColor: '#f0fdf4',
+          border: '1px solid #bbf7d0',
+          borderRadius: '8px',
+          textAlign: 'center',
+          color: '#166534'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+            <ShieldCheck size={20} color="#166534" />
+            <span style={{ fontWeight: 600 }}>Payment successful</span>
+          </div>
+          <div style={{ fontSize: '0.875rem' }}>Order ID: {product.orderId}</div>
+        </div>
+      ) : product.showCheckout ? (
+        <button 
+          onClick={() => product.onCheckout && product.onCheckout(product)}
+          style={{
+          width: '100%',
+          padding: '0.875rem',
+          backgroundColor: 'var(--color-accent)',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '1rem',
+          fontWeight: 500,
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
+          transition: 'var(--transition-fast)'
+        }}>
+          <ShieldCheck size={18} />
+          Pay with Razorpay
+        </button>
+      ) : null}
     </div>
   );
 };

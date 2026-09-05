@@ -30,5 +30,21 @@ export const api = {
 
     // Backend returns a plain string, so we use text()
     return response.text();
+  },
+
+  async createOrder(decisionId) {
+    const response = await fetch('/api/orders/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ decisionId })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to create order: ${response.statusText}`);
+    }
+
+    return response.json();
   }
 };

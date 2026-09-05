@@ -29,12 +29,17 @@ public class DecisionPipelineService {
                 .orElseThrow(() -> new RuntimeException("No merchant found in DB"));
 
         // 1. Generate Candidates
-        List<ActionCandidate> candidates = candidateGeneratorService.generateCandidates(state, merchant);
+        List<ActionCandidate> allCandidates = candidateGeneratorService.generateCandidates(state, merchant);
+        
+        // Hierarchical pipeline: Only consider BASE products (laptops) first
+        List<ActionCandidate> baseCandidates = allCandidates.stream()
+                .filter(c -> "BASE".equals(c.getType()))
+                .collect(Collectors.toList());
         
         // 2. Enforce Policy
-        List<ActionCandidate> passed = policyEngineService.enforcePolicy(candidates, merchant, state);
+        List<ActionCandidate> passed = policyEngineService.enforcePolicy(baseCandidates, merchant, state);
         
-        List<AgentDecision.PolicyRejection> policyRejections = candidates.stream()
+        List<AgentDecision.PolicyRejection> policyRejections = baseCandidates.stream()
                 .filter(c -> "REJECTED".equals(c.getStatus()))
                 .map(c -> AgentDecision.PolicyRejection.builder()
                         .action(c.getActionName())
@@ -42,11 +47,70 @@ public class DecisionPipelineService {
                         .build())
                 .collect(Collectors.toList());
 
-        // 3. Score & Select Best
+        // 3. Score & Select Best Laptop
         ActionCandidate bestAction = decisionEngineService.selectBestCandidate(passed, state, merchant);
+        
+        boolean isDiscovery = "DISCOVERY".equalsIgnoreCase(state.decisionStage()) || (state.useCases() == null || state.useCases().isEmpty());
+        if (isDiscovery) {
+            bestAction = null;
+            passed.forEach(c -> {
+                if ("SELECTED".equals(c.getStatus())) {
+                    c.setStatus("CONSIDERED");
+                }
+            });
+        }
+        
+        // 4. Cross-sell accessories hierarchically (Only if we are past the initial laptop recommendation)
+        boolean allowCrossSell = state.decisionStage() == null || !"LAPTOP_RECOMMENDATION".equalsIgnoreCase(state.decisionStage());
+        if (allowCrossSell && bestAction != null && state.requestedItems() != null && !state.requestedItems().isEmpty()) {
+            final String bestId = bestAction.getBaseProduct().getProductId();
+            
+            // Try to find a bundle that matches the most requested items
+            ActionCandidate matchingBundle = allCandidates.stream()
+                .filter(c -> "BUNDLE".equals(c.getType()) && c.getBaseProduct().getProductId().equals(bestId))
+                .max(java.util.Comparator.comparingInt(c -> {
+                    if (c.getBundledProducts() == null || c.getBundledProducts().isEmpty()) return 0;
+                    int matches = 0;
+                    for (String req : state.requestedItems()) {
+                        boolean match = c.getBundledProducts().stream().anyMatch(p -> 
+                            p.getName().toLowerCase().contains(req.toLowerCase()) || 
+                            (p.getCategory() != null && p.getCategory().toLowerCase().contains(req.toLowerCase())));
+                        if (match) matches++;
+                    }
+                    return matches;
+                }))
+                .filter(c -> {
+                    if (c.getBundledProducts() == null || c.getBundledProducts().isEmpty()) return false;
+                    for (String req : state.requestedItems()) {
+                        boolean match = c.getBundledProducts().stream().anyMatch(p -> 
+                            p.getName().toLowerCase().contains(req.toLowerCase()) || 
+                            (p.getCategory() != null && p.getCategory().toLowerCase().contains(req.toLowerCase())));
+                        if (match) return true;
+                    }
+                    return false;
+                })
+                .orElse(null);
+                
+            // Fallback to any predefined bundle if no specific match
+            if (matchingBundle == null) {
+                matchingBundle = allCandidates.stream()
+                    .filter(c -> "BUNDLE".equals(c.getType()) && c.getBaseProduct().getProductId().equals(bestId))
+                    .findFirst().orElse(null);
+            }
+                
+            if (matchingBundle != null) {
+                bestAction.setStatus("CONSIDERED"); // Remove SELECTED status from the base product
+                decisionEngineService.selectBestCandidate(List.of(matchingBundle), state, merchant);
+                bestAction = matchingBundle;
+                passed.add(bestAction);
+            }
+        }
+        
+        // For output mapping, we only show the ones that passed through the hierarchical pipeline
+        List<ActionCandidate> finalCandidatesToMap = passed;
 
         // Map candidates to AgentDecision format
-        List<AgentDecision.Candidate> mappedCandidates = candidates.stream()
+        List<AgentDecision.Candidate> mappedCandidates = finalCandidatesToMap.stream()
                 .map(c -> {
                     double amount = c.getBaseProduct().getPrice();
                     if (c.getBundledProducts() != null) {
@@ -65,6 +129,7 @@ public class DecisionPipelineService {
                         .finalAmount(finalAmount)
                         .status(c.getStatus())
                         .finalScore(c.getFinalScore())
+                        .preferenceCompromised(c.isPreferenceCompromised())
                         .factors(AgentDecision.Factors.builder()
                                 .customerFit(c.getCustomerFit())
                                 .budgetFit(c.getBudgetFit())
@@ -85,8 +150,9 @@ public class DecisionPipelineService {
 
         AgentDecision.Candidate mappedSelected = null;
         if (bestAction != null) {
+            final String finalActionName = bestAction.getActionName();
             mappedSelected = mappedCandidates.stream()
-                    .filter(c -> c.getAction().equals(bestAction.getActionName()))
+                    .filter(c -> c.getAction().equals(finalActionName))
                     .findFirst()
                     .orElse(null);
         }

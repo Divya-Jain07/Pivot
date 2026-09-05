@@ -42,6 +42,7 @@ public class AgentDecision {
         private Map<String, Double> weights;
         private double finalScore;
         private String status; // "SELECTED", "REJECTED", "CONSIDERED"
+        private boolean preferenceCompromised;
     }
 
     @Data

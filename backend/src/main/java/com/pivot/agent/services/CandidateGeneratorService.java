@@ -70,6 +70,7 @@ public class CandidateGeneratorService {
                 List<Product> dynamicBundle = new ArrayList<>();
                 for (String reqItem : state.requestedItems()) {
                     productRepository.findAll().stream()
+                        .filter(p -> state.category() == null || !state.category().equalsIgnoreCase(p.getCategory())) // Don't bundle another laptop
                         .filter(p -> (p.getCategory() != null && p.getCategory().toLowerCase().contains(reqItem.toLowerCase())) || 
                                      (p.getName() != null && p.getName().toLowerCase().contains(reqItem.toLowerCase())))
                         .findFirst()
@@ -77,14 +78,15 @@ public class CandidateGeneratorService {
                 }
                 
                 if (!dynamicBundle.isEmpty()) {
+                    List<Product> uniqueBundleProducts = dynamicBundle.stream().distinct().collect(java.util.stream.Collectors.toList());
                     StringBuilder bundleName = new StringBuilder("Buy " + product.getName());
-                    for (Product bp : dynamicBundle) {
+                    for (Product bp : uniqueBundleProducts) {
                         bundleName.append(" + ").append(bp.getName());
                     }
                     candidates.add(ActionCandidate.builder()
                             .actionName(bundleName.toString())
                             .baseProduct(product)
-                            .bundledProducts(dynamicBundle)
+                            .bundledProducts(uniqueBundleProducts)
                             .discountPercent(0.0)
                             .type("BUNDLE")
                             .status("CONSIDERED")

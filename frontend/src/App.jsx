@@ -19,6 +19,63 @@ function App() {
     setSessionId(crypto.randomUUID());
   }, []);
 
+  const handleCheckout = async (product, idx) => {
+    try {
+      // 1. Call backend to create Order
+      const orderData = await api.createOrder(product.decisionId);
+      
+      // 2. Initialize Razorpay
+      const options = {
+        key: 'rzp_test_TWng88f9gaN4hA', // Razorpay Test Key from .env
+        amount: orderData.finalAmount * 100, // paise
+        currency: 'INR',
+        name: 'Pivot AI Agent',
+        description: product.name,
+        order_id: orderData.razorpayOrderId,
+        handler: function (response) {
+          // 3. On success, update UI
+          handlePaymentSuccess(orderData.orderId, product, idx);
+        },
+        theme: {
+          color: '#3399cc'
+        }
+      };
+      
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (error) {
+      console.error("Error launching Razorpay:", error);
+    }
+  };
+
+  const handlePaymentSuccess = (orderId, product, idx) => {
+    // Update the specific message's product card
+    const updatedMessages = [...messages];
+    updatedMessages[idx].product = {
+      ...updatedMessages[idx].product,
+      paymentStatus: 'SUCCESS',
+      orderId: orderId
+    };
+    setMessages(updatedMessages);
+
+    // Append to terminal logs
+    setTerminalLogs(prev => [
+      ...prev,
+      {
+        step: "06. PAYMENT CONFIRMED",
+        content: [
+          `payment_status   SUCCESS`,
+          `order_id         ${orderId}`,
+          `amount           ₹${product.finalPrice}`
+        ]
+      },
+      {
+        step: "STATUS: ORDER CONFIRMED",
+        content: []
+      }
+    ]);
+  };
+
   const handleSendMessage = async (text) => {
     // 1. Add user message
     const newMessages = [...messages, { isAi: false, message: text }];
@@ -41,10 +98,13 @@ function App() {
       let productCard = null;
       if (selected) {
         productCard = {
+          decisionId: decision.decisionId,
           name: selected.action || 'Recommended Product',
           description: `Product ID: ${selected.productId}`,
           originalPrice: selected.amount,
-          finalPrice: selected.finalAmount
+          finalPrice: selected.finalAmount,
+          showCheckout: decision.extractedState?.decisionStage === 'CHECKOUT' || decision.extractedState?.isReadyToCheckout,
+          paymentStatus: 'PENDING'
         };
       }
 
@@ -66,11 +126,13 @@ function App() {
       logs.push({
         step: "01. CUSTOMER UNDERSTANDING",
         content: [
-          `timestamp         ${decision.timestamp || new Date().toISOString()}`,
+          `timestamp         ${new Date(decision.timestamp || Date.now()).toLocaleString()}`,
           `budget            ~₹${state.budget || 0}`,
-          `use_case          ${state.useCase || 'N/A'}`,
+          `use_case          ${state.useCases ? state.useCases.join(', ') : 'N/A'}`,
           `category          ${state.category || 'N/A'}`,
-          `price_sensitivity ${state.priceSensitivity || 'N/A'}`
+          `price_sensitivity ${state.priceSensitivity || 'N/A'}`,
+          `decision_stage    ${state.decisionStage || 'N/A'}`,
+          `requested_items   ${state.requestedItems ? state.requestedItems.join(', ') : 'None'}`
         ]
       });
     }
@@ -93,7 +155,9 @@ function App() {
         evalContent.push(`${(c.productId || 'p_?').padEnd(8)} ${name}  ${cFit.padEnd(8)}  ${bFit.padEnd(10)}  ${score.padEnd(5)}  ${c.status}`);
         
         if (c.status === 'REJECTED') {
-          evalContent.push(`         reason: Failed internal minimum thresholds or constraints`);
+          const rejection = decision.policyRejections?.find(r => r.action === c.action);
+          const reason = rejection ? rejection.reason : 'Failed internal minimum thresholds or constraints';
+          evalContent.push(`         reason: ${reason}`);
         }
       });
 
@@ -116,10 +180,13 @@ function App() {
           ]
         });
         
-        logs.push({
-          step: "STATUS: READY FOR CHECKOUT",
-          content: []
-        });
+        const isCheckout = decision.extractedState?.decisionStage === 'CHECKOUT' || decision.extractedState?.isReadyToCheckout;
+        if (isCheckout) {
+          logs.push({
+            step: "STATUS: READY FOR CHECKOUT",
+            content: []
+          });
+        }
       } else {
         logs.push({
           step: "04. DECISION",
@@ -142,7 +209,11 @@ function App() {
             {messages.map((msg, idx) => (
               <React.Fragment key={idx}>
                 <ChatBubble isAi={msg.isAi} message={msg.message} />
-                {msg.product && <RecommendationCard product={msg.product} />}
+                {msg.product && (
+                  <RecommendationCard 
+                    product={{...msg.product, onCheckout: () => handleCheckout(msg.product, idx)}} 
+                  />
+                )}
               </React.Fragment>
             ))}
           </div>

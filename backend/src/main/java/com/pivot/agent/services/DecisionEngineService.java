@@ -13,6 +13,14 @@ import java.util.List;
 @Service
 public class DecisionEngineService {
 
+    private final CustomerFitService customerFitService;
+    private final ProductCapabilityService productCapabilityService;
+
+    public DecisionEngineService(CustomerFitService customerFitService, ProductCapabilityService productCapabilityService) {
+        this.customerFitService = customerFitService;
+        this.productCapabilityService = productCapabilityService;
+    }
+
     private static final double CUSTOMER_FIT_WEIGHT = 0.40;
     private static final double BUDGET_FIT_WEIGHT = 0.20;
     private static final double MERCHANT_VALUE_WEIGHT = 0.20;
@@ -62,45 +70,8 @@ public class DecisionEngineService {
     }
 
     private double calculateCustomerFit(ActionCandidate candidate, ExtractedState state) {
-        int score = 50;
-        if (state.useCase() != null) {
-            String useCase = state.useCase().toLowerCase();
-            Product p = candidate.getBaseProduct();
-            if (p.getUseCases() != null && p.getUseCases().stream().anyMatch(u -> u.toLowerCase().contains(useCase) || useCase.contains(u.toLowerCase()))) {
-                score += 30;
-            }
-            if (p.getFeatures() != null && p.getFeatures().stream().anyMatch(f -> f.toLowerCase().contains(useCase) || useCase.contains(f.toLowerCase()))) {
-                score += 20;
-            }
-            if (p.getTags() != null && p.getTags().stream().anyMatch(t -> t.toLowerCase().contains(useCase) || useCase.contains(t.toLowerCase()))) {
-                score += 20;
-            }
-            
-            if (candidate.getBundledProducts() != null) {
-                for (Product bp : candidate.getBundledProducts()) {
-                    if (bp.getUseCases() != null && bp.getUseCases().stream().anyMatch(u -> u.toLowerCase().contains(useCase) || useCase.contains(u.toLowerCase()))) {
-                        score += 20;
-                    }
-                    if (bp.getFeatures() != null && bp.getFeatures().stream().anyMatch(f -> f.toLowerCase().contains(useCase) || useCase.contains(f.toLowerCase()))) {
-                        score += 15;
-                    }
-                    if (bp.getTags() != null && bp.getTags().stream().anyMatch(t -> t.toLowerCase().contains(useCase) || useCase.contains(t.toLowerCase()))) {
-                        score += 15;
-                    }
-                }
-            }
-        }
-        if (state.negativePreferences() != null) {
-            for (String negPref : state.negativePreferences()) {
-                String neg = negPref.toLowerCase();
-                if (candidate.getActionName().toLowerCase().contains(neg) || 
-                    candidate.getType().toLowerCase().contains(neg)) {
-                    score -= 50;
-                }
-            }
-        }
-        
-        return Math.max(0.0, Math.min(100.0, score));
+        var capability = productCapabilityService.evaluate(candidate.getBaseProduct());
+        return customerFitService.calculateFit(state, capability);
     }
 
     private double calculateBudgetFit(ActionCandidate candidate, ExtractedState state) {
@@ -115,7 +86,10 @@ public class DecisionEngineService {
         }
         price = price * (1.0 - (candidate.getDiscountPercent() / 100.0));
         
-        double penalty = (Math.abs(price - budget) / budget) * 100.0;
+        double penalty = 0.0;
+        if (price > budget) {
+            penalty = ((price - budget) / budget) * 100.0;
+        }
         double fit = 100.0 - penalty;
         
         if (state.isStrictBudget() != null && state.isStrictBudget() && price > budget) {
