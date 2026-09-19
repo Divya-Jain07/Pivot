@@ -1,12 +1,11 @@
 services:
   - type: web
     name: pivot-backend
-    runtime: java
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     region: singapore  # closest to India — change to oregon/ohio if preferred
     plan: free
-    buildCommand: cd backend && ./mvnw package -DskipTests -q
-    startCommand: java -jar backend/target/agent-0.0.1-SNAPSHOT.jar
-    healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
