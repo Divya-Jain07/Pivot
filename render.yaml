@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: pivot-backend
+    runtime: java
+    region: singapore  # closest to India — change to oregon/ohio if preferred
+    plan: free
+    buildCommand: cd backend && ./mvnw package -DskipTests -q
+    startCommand: java -jar backend/target/agent-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: FRONTEND_URL
+        sync: false   # set manually in Render dashboard (your Vercel URL)
+      - key: AGENT_MONGODB_URI
+        sync: false   # set manually in Render dashboard
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false

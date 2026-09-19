@@ -70,6 +70,19 @@
 			<version>1.4.6</version>
 		</dependency>
 
+		<!-- Fix #3 — Rate limiting -->
+		<dependency>
+			<groupId>com.bucket4j</groupId>
+			<artifactId>bucket4j_jdk17-core</artifactId>
+			<version>8.14.0</version>
+		</dependency>
+
+		<!-- Fix #5 — Bounded session cache (prevents unbounded ConcurrentHashMap growth) -->
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>

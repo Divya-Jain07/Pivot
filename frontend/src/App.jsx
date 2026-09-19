@@ -13,10 +13,18 @@ function App() {
   ]);
   const [terminalLogs, setTerminalLogs] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
+  // Fix #4 — Razorpay key fetched from backend so both sides always agree
+  const [razorpayKeyId, setRazorpayKeyId] = useState('');
 
   useEffect(() => {
     // Generate simple UUID for session
     setSessionId(crypto.randomUUID());
+
+    // Fetch public config from backend (includes Razorpay key_id)
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => setRazorpayKeyId(data.razorpayKeyId))
+      .catch(err => console.error('Failed to fetch app config:', err));
   }, []);
 
   const handleCheckout = async (product, idx) => {
@@ -26,7 +34,7 @@ function App() {
       
       // 2. Initialize Razorpay
       const options = {
-        key: 'rzp_test_TWng88f9gaN4hA', // Razorpay Test Key from .env
+        key: razorpayKeyId, // Fix #4 — sourced from backend /api/config (not hardcoded)
         amount: orderData.finalAmount * 100, // paise
         currency: 'INR',
         name: 'Pivot AI Agent',
