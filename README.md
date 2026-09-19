@@ -1,10 +1,6 @@
 # PIVOT: AI Merchant Sales Agent
 
-**Razorpay AI Buildathon, Track 01: AI Growth & Agentic Commerce**
-
-> PIVOT lets any Razorpay merchant deploy an AI sales agent that handles customer queries, recommends products, and closes orders. No unauthorized discounts. No hallucinated prices.
-
-An AI sales agent that talks to customers in natural language but never decides what they pay. The LLM only understands intent and phrases responses. A deterministic policy engine and decision engine make every pricing, discount, and recommendation call in code. Every decision is auditable, not just narrated.
+An AI sales agent that talks to customers in natural language but never decides what they pay - a deterministic policy engine and decision engine make every pricing, discount, and recommendation call in code, so every decision is auditable, not just narrated.
 
 ---
 
@@ -198,6 +194,10 @@ Razorpay is the commercial backbone that makes the agent's decisions real, not j
 | **Webhooks** | `payment.captured` event drives the canonical order status in MongoDB. The frontend result is treated as optimistic; the webhook is the source of truth. |
 
 All of this runs in **Razorpay test mode**. No real money moves, but the full API contract is exercised end-to-end.
+
+---
+
+*Originally built for the Razorpay AI Buildathon (Track 01: AI Growth & Agentic Commerce).*
 
 ---
 
