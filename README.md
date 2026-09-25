@@ -54,7 +54,7 @@ Customer message
 | Strategic Value | 10% | Match against the merchant's stated objective |
 | Offer Suitability | 10% | Rewards minimal valid discounts over larger ones |
 
-**To try it yourself:** Ask the agent for a recommendation under a budget for a specific use case (e.g. *"I need something for a bakery, budget around ₹15,000"*), respond to its follow-up questions, confirm the suggestion, and watch a real Razorpay checkout open.
+**To try it yourself:** Ask the agent for a recommendation under a budget for a specific use case (e.g. *"I need a laptop for programming and gaming, budget around ₹60,000"*), respond to its follow-up questions, confirm the suggestion, and watch a real Razorpay checkout open.
 
 ---
 
