@@ -56,7 +56,7 @@ public class ChatController {
         if (history == null) {
             history = new StringBuilder();
             sessionHistory.put(request.sessionId(), history);
-        }
+        }   
         history.append("Customer: ").append(request.message()).append("\n");
         
         // Run Phase 3, 4, 5

@@ -25,6 +25,7 @@ Most "AI sales agent" demos let the LLM decide prices and discounts directly. Th
 
 - **The LLM understands and phrases.** It extracts structured intent from free text (category, use case, budget, priorities) and later turns a decision into natural language. It never outputs a number that affects what the customer pays.
 - **Deterministic code decides.** A policy engine hard-rejects anything commercially invalid (discount too high, margin too low, out of stock). A decision engine scores every valid option and picks the best one.
+- **Single merchant assumption:** this app currently assumes exactly one merchant record exists in MongoDB, and the seed loader keeps only one merchant entry. The decision pipeline picks the first merchant from the collection.
 
 Every decision, including rejected candidates and the reason for each rejection, is stored and fully reconstructable.
 
@@ -194,6 +195,10 @@ Razorpay is the commercial backbone that makes the agent's decisions real, not j
 | **Webhooks** | `payment.captured` event drives the canonical order status in MongoDB. The frontend result is treated as optimistic; the webhook is the source of truth. |
 
 All of this runs in **Razorpay test mode**. No real money moves, but the full API contract is exercised end-to-end.
+
+### Seed behaviour
+
+The backend seeds the catalog only when the products collection is empty, unless `PIVOT_SEED_RELOAD=true` is set. This avoids accidentally deleting the live catalog on app restarts. The default model uses `GEMINI_MODEL` with the current provider value as the default: `gemini-3.6-flash`.
 
 ---
 

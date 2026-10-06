@@ -22,6 +22,15 @@ public class Product {
     private double price;
     private double cost;
     private int inventory;
+    private Integer ramGb;
+    private Integer storageGb;
+    private Double weightKg;
+    private Double screenSizeInch;
+    private String cpuTier;
+    private Boolean dedicatedGpu;
+    private Double userRating;
+    private Integer ratingCount;
+    private Double batteryWh;
     private List<String> features;
     private List<String> useCases;
     private List<String> tags;

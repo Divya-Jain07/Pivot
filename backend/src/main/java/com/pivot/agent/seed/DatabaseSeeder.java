@@ -25,6 +25,9 @@ public class DatabaseSeeder implements CommandLineRunner {
     @org.springframework.beans.factory.annotation.Value("${spring.data.mongodb.uri:NOT_FOUND}")
     private String mongoUri;
 
+    @org.springframework.beans.factory.annotation.Value("${pivot.seed.reload:false}")
+    private boolean reloadEnabled;
+
     public DatabaseSeeder(ProductRepository productRepository, MerchantRepository merchantRepository, ObjectMapper objectMapper) {
         this.productRepository = productRepository;
         this.merchantRepository = merchantRepository;
@@ -40,19 +43,29 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("Initializing database with seed data...");
 
-        // Clear existing data for a clean start on each run
-        productRepository.deleteAll();
-        merchantRepository.deleteAll();
+        long productCount = productRepository.count();
+        long merchantCount = merchantRepository.count();
+
+        if (reloadEnabled) {
+            logger.info("Reload requested via pivot.seed.reload=true; replacing the current catalog.");
+            productRepository.deleteAll();
+            merchantRepository.deleteAll();
+            productCount = 0;
+            merchantCount = 0;
+        } else if (productCount > 0 && merchantCount > 0) {
+            logger.info("Catalog already present (products={}, merchants={}); skipping seed import.", productCount, merchantCount);
+            return;
+        }
 
         try {
             org.springframework.core.io.ClassPathResource resource = new org.springframework.core.io.ClassPathResource("dataseed.json");
             if (resource.exists()) {
                 try (java.io.InputStream inputStream = resource.getInputStream()) {
                     SeedData data = objectMapper.readValue(inputStream, SeedData.class);
-                    if (data.products != null) {
+                    if (data.products != null && (reloadEnabled || productCount == 0)) {
                         productRepository.saveAll(data.products);
                     }
-                    if (data.merchant != null) {
+                    if (data.merchant != null && (reloadEnabled || merchantCount == 0)) {
                         merchantRepository.save(data.merchant);
                     }
                     logger.info("Successfully loaded data from classpath:dataseed.json");

@@ -3,166 +3,14 @@
     "merchantId": "MERCH-001",
     "minMarginPercent": 12.0,
     "maxDiscountPercent": 10.0,
-    "discountSteps": [0.0, 5.0, 10.0],
+    "discountSteps": [
+      0.0,
+      5.0,
+      10.0
+    ],
     "primaryObjective": "clear_overstock"
   },
   "products": [
-    {
-      "productId": "p1",
-      "name": "BasicBook 14",
-      "category": "laptop",
-      "price": 40000,
-      "cost": 32000,
-      "inventory": 20,
-      "features": ["Intel i3", "8GB RAM", "256GB SSD", "14-inch HD Display"],
-      "useCases": ["student", "browsing", "light work"],
-      "tags": ["entry-level"],
-      "crossSell": ["p9", "p10"],
-      "upsell": ["p2"]
-    },
-    {
-      "productId": "p2",
-      "name": "BasicBook 14 Plus",
-      "category": "laptop",
-      "price": 43000,
-      "cost": 33000,
-      "inventory": 15,
-      "features": ["Intel i5", "8GB RAM", "512GB SSD", "14-inch FHD Display"],
-      "useCases": ["student", "productivity", "multitasking"],
-      "tags": ["entry-level", "value-pick"],
-      "crossSell": ["p9", "p10"],
-      "upsell": ["p3"]
-    },
-    {
-      "productId": "p3",
-      "name": "ProBook 15",
-      "category": "laptop",
-      "price": 60000,
-      "cost": 48000,
-      "inventory": 25,
-      "features": ["AMD Ryzen 5", "16GB RAM", "512GB SSD", "15.6-inch FHD Display", "Backlit Keyboard"],
-      "useCases": ["programming", "business", "heavy multitasking"],
-      "tags": ["mid-range", "bestseller"],
-      "crossSell": ["p9", "p10", "p11"],
-      "upsell": ["p4"]
-    },
-    {
-      "productId": "p4",
-      "name": "UltraBook Pro 15",
-      "category": "laptop",
-      "price": 85000,
-      "cost": 70000,
-      "inventory": 10,
-      "features": ["Intel i7", "16GB RAM", "1TB SSD", "Dedicated GPU", "15.6-inch 4K Display"],
-      "useCases": ["programming", "video editing", "gaming"],
-      "tags": ["high-end", "creator"],
-      "crossSell": ["p9", "p10", "p11", "p13"],
-      "upsell": ["p5"]
-    },
-    {
-      "productId": "p5",
-      "name": "DevMachine Max",
-      "category": "laptop",
-      "price": 150000,
-      "cost": 120000,
-      "inventory": 5,
-      "features": ["M2 Chip", "32GB RAM", "1TB SSD", "Retina Display"],
-      "useCases": ["programming", "ai development", "professional"],
-      "tags": ["premium", "developer"],
-      "crossSell": ["p10", "p11"],
-      "upsell": []
-    },
-    {
-      "productId": "p6",
-      "name": "StudyBook Air",
-      "category": "laptop",
-      "price": 35000,
-      "cost": 30000,
-      "inventory": 40,
-      "features": ["Intel Celeron", "4GB RAM", "128GB SSD", "Lightweight 1.3kg"],
-      "useCases": ["student", "browsing", "note-taking"],
-      "tags": ["entry-level", "clear_overstock"],
-      "crossSell": ["p9", "p10"],
-      "upsell": ["p1"]
-    },
-    {
-      "productId": "p7",
-      "name": "GameForge 16",
-      "category": "laptop",
-      "price": 110000,
-      "cost": 88000,
-      "inventory": 8,
-      "features": ["Intel i7", "16GB RAM", "1TB SSD", "RTX Graphics", "165Hz Display"],
-      "useCases": ["gaming", "video editing", "streaming"],
-      "tags": ["high-end", "gaming"],
-      "crossSell": ["p9", "p11", "p13"],
-      "upsell": ["p5"]
-    },
-    {
-      "productId": "p8",
-      "name": "BizBook Elite",
-      "category": "laptop",
-      "price": 55000,
-      "cost": 47000,
-      "inventory": 30,
-      "features": ["Intel i5", "16GB RAM", "256GB SSD", "Fingerprint Reader", "14-inch FHD"],
-      "useCases": ["business", "travel", "productivity"],
-      "tags": ["mid-range", "clear_overstock"],
-      "crossSell": ["p9", "p10", "p12"],
-      "upsell": ["p3"]
-    },
-    {
-      "productId": "p15",
-      "name": "AirLite 13",
-      "category": "laptop",
-      "price": 38000,
-      "cost": 31000,
-      "inventory": 22,
-      "features": ["Intel i3", "8GB RAM", "256GB SSD", "1.1kg Ultralight"],
-      "useCases": ["student", "travel", "browsing"],
-      "tags": ["entry-level", "bestseller"],
-      "crossSell": ["p9", "p21"],
-      "upsell": ["p2"]
-    },
-    {
-      "productId": "p16",
-      "name": "Creator Book 16",
-      "category": "laptop",
-      "price": 130000,
-      "cost": 105000,
-      "inventory": 6,
-      "features": ["Intel i9", "32GB RAM", "1TB SSD", "Dedicated GPU", "16-inch 4K Display"],
-      "useCases": ["video editing", "3d rendering", "professional"],
-      "tags": ["high-end", "creator"],
-      "crossSell": ["p10", "p11", "p19"],
-      "upsell": ["p5"]
-    },
-    {
-      "productId": "p17",
-      "name": "TravelMate 14",
-      "category": "laptop",
-      "price": 58000,
-      "cost": 49000,
-      "inventory": 18,
-      "features": ["Intel i5", "8GB RAM", "512GB SSD", "14-inch FHD", "Lightweight 1.4kg"],
-      "useCases": ["business", "travel", "productivity"],
-      "tags": ["mid-range"],
-      "crossSell": ["p10", "p20"],
-      "upsell": ["p8"]
-    },
-    {
-      "productId": "p18",
-      "name": "EduBook Basic",
-      "category": "laptop",
-      "price": 32000,
-      "cost": 27500,
-      "inventory": 35,
-      "features": ["Intel Celeron", "4GB RAM", "256GB SSD", "14-inch HD Display"],
-      "useCases": ["student", "browsing", "note-taking"],
-      "tags": ["entry-level", "clear_overstock"],
-      "crossSell": ["p9", "p21"],
-      "upsell": ["p1"]
-    },
     {
       "productId": "p9",
       "name": "Ergo Wireless Mouse",
@@ -170,9 +18,18 @@
       "price": 2000,
       "cost": 1000,
       "inventory": 50,
-      "features": ["Wireless", "Ergonomic", "Optical Sensor"],
-      "useCases": ["productivity", "travel"],
-      "tags": ["accessory"],
+      "features": [
+        "Wireless",
+        "Ergonomic",
+        "Optical Sensor"
+      ],
+      "useCases": [
+        "productivity",
+        "travel"
+      ],
+      "tags": [
+        "accessory"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -183,9 +40,20 @@
       "price": 3500,
       "cost": 1500,
       "inventory": 30,
-      "features": ["Waterproof", "Fits up to 15.6-inch", "Padded Compartment"],
-      "useCases": ["travel", "college", "work"],
-      "tags": ["accessory", "clear_overstock"],
+      "features": [
+        "Waterproof",
+        "Fits up to 15.6-inch",
+        "Padded Compartment"
+      ],
+      "useCases": [
+        "travel",
+        "college",
+        "work"
+      ],
+      "tags": [
+        "accessory",
+        "clear_overstock"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -196,9 +64,19 @@
       "price": 2500,
       "cost": 1200,
       "inventory": 100,
-      "features": ["USB-C", "HDMI 4K", "USB 3.0 x3", "SD Card Reader"],
-      "useCases": ["productivity", "macbook"],
-      "tags": ["accessory"],
+      "features": [
+        "USB-C",
+        "HDMI 4K",
+        "USB 3.0 x3",
+        "SD Card Reader"
+      ],
+      "useCases": [
+        "productivity",
+        "macbook"
+      ],
+      "tags": [
+        "accessory"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -209,9 +87,19 @@
       "price": 4500,
       "cost": 2800,
       "inventory": 25,
-      "features": ["Bluetooth 5.0", "Mechanical Switches", "Backlit"],
-      "useCases": ["productivity", "gaming"],
-      "tags": ["accessory", "bestseller"],
+      "features": [
+        "Bluetooth 5.0",
+        "Mechanical Switches",
+        "Backlit"
+      ],
+      "useCases": [
+        "productivity",
+        "gaming"
+      ],
+      "tags": [
+        "accessory",
+        "bestseller"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -222,9 +110,18 @@
       "price": 1800,
       "cost": 900,
       "inventory": 45,
-      "features": ["Dual Fan", "Adjustable Height", "USB Powered"],
-      "useCases": ["gaming", "video editing"],
-      "tags": ["accessory"],
+      "features": [
+        "Dual Fan",
+        "Adjustable Height",
+        "USB Powered"
+      ],
+      "useCases": [
+        "gaming",
+        "video editing"
+      ],
+      "tags": [
+        "accessory"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -235,9 +132,20 @@
       "price": 12000,
       "cost": 9000,
       "inventory": 12,
-      "features": ["27-inch", "Full HD", "75Hz Refresh Rate", "HDMI + VGA"],
-      "useCases": ["productivity", "business", "gaming"],
-      "tags": ["accessory"],
+      "features": [
+        "27-inch",
+        "Full HD",
+        "75Hz Refresh Rate",
+        "HDMI + VGA"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "gaming"
+      ],
+      "tags": [
+        "accessory"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -248,9 +156,21 @@
       "price": 22000,
       "cost": 17000,
       "inventory": 9,
-      "features": ["34-inch", "Curved Ultrawide", "144Hz Refresh Rate", "USB-C"],
-      "useCases": ["video editing", "gaming", "productivity"],
-      "tags": ["accessory", "premium"],
+      "features": [
+        "34-inch",
+        "Curved Ultrawide",
+        "144Hz Refresh Rate",
+        "USB-C"
+      ],
+      "useCases": [
+        "video editing",
+        "gaming",
+        "productivity"
+      ],
+      "tags": [
+        "accessory",
+        "premium"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -261,9 +181,18 @@
       "price": 1200,
       "cost": 600,
       "inventory": 80,
-      "features": ["100W Fast Charging", "2m Braided Cable", "USB-C to USB-C"],
-      "useCases": ["travel", "productivity"],
-      "tags": ["accessory"],
+      "features": [
+        "100W Fast Charging",
+        "2m Braided Cable",
+        "USB-C to USB-C"
+      ],
+      "useCases": [
+        "travel",
+        "productivity"
+      ],
+      "tags": [
+        "accessory"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -274,9 +203,19 @@
       "price": 1500,
       "cost": 700,
       "inventory": 60,
-      "features": ["Neoprene", "Shock-resistant", "Slim Fit"],
-      "useCases": ["travel", "student"],
-      "tags": ["accessory", "clear_overstock"],
+      "features": [
+        "Neoprene",
+        "Shock-resistant",
+        "Slim Fit"
+      ],
+      "useCases": [
+        "travel",
+        "student"
+      ],
+      "tags": [
+        "accessory",
+        "clear_overstock"
+      ],
       "crossSell": [],
       "upsell": []
     },
@@ -287,10 +226,7528 @@
       "price": 5500,
       "cost": 3200,
       "inventory": 20,
-      "features": ["Active Noise Cancellation", "30H Battery", "Bluetooth 5.2"],
-      "useCases": ["travel", "productivity", "music"],
-      "tags": ["accessory", "bestseller"],
+      "features": [
+        "Active Noise Cancellation",
+        "30H Battery",
+        "Bluetooth 5.2"
+      ],
+      "useCases": [
+        "travel",
+        "productivity",
+        "music"
+      ],
+      "tags": [
+        "accessory",
+        "bestseller"
+      ],
       "crossSell": [],
+      "upsell": []
+    },
+    {
+      "productId": "l-1c9e71c1f525",
+      "name": "Chuwi Gemibook X Pro",
+      "category": "laptop",
+      "price": 20990,
+      "cost": 19101,
+      "inventory": 0,
+      "features": [
+        "CPU processor",
+        "8GB RAM",
+        "256GB storage",
+        "14.1-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "38.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-35eb0f448dd3",
+      "name": "ASUS Vivobook Go 15 E510MA-EJ011WS",
+      "category": "laptop",
+      "price": 24990,
+      "cost": 21741,
+      "inventory": 11,
+      "features": [
+        "Celeron processor",
+        "8GB RAM",
+        "256GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "42.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-c35b8ded100f",
+      "name": "Chuwi CoreBook X Core i3 8GB/512GB",
+      "category": "laptop",
+      "price": 24990,
+      "cost": 21491,
+      "inventory": 18,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "46.2Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-ced1389e27bc",
+      "name": "Infinix INBook X2 Slim Series",
+      "category": "laptop",
+      "price": 25990,
+      "cost": 22092,
+      "inventory": 25,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.2kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "travel"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-03b0c25566f0",
+      "name": "Infinix INBook X2 Slim Series Core i3 8GB/512GB",
+      "category": "laptop",
+      "price": 25990,
+      "cost": 21832,
+      "inventory": 32,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.2kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "travel"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-863ef4323dd5",
+      "name": "Lenovo IdeaPad 1 15AMN7 82VG00EQIN",
+      "category": "laptop",
+      "price": 26990,
+      "cost": 23751,
+      "inventory": 39,
+      "features": [
+        "Athlon processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "HD display",
+        "amd graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-b196b2666b88",
+      "name": "HP 15s-ey1509AU",
+      "category": "laptop",
+      "price": 27490,
+      "cost": 23916,
+      "inventory": 46,
+      "features": [
+        "Athlon processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "HD display",
+        "amd graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-35931fe6d18a"
+      ]
+    },
+    {
+      "productId": "l-a3365f434f94",
+      "name": "Infinix INBook X3 Slim XL422 2023",
+      "category": "laptop",
+      "price": 29990,
+      "cost": 25791,
+      "inventory": 53,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.2kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "travel"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-a5a964f9dc45"
+      ]
+    },
+    {
+      "productId": "l-79d74f4cb8eb",
+      "name": "Acer Extensa EX215-23 NX.EH3SI.003",
+      "category": "laptop",
+      "price": 31990,
+      "cost": 27192,
+      "inventory": 5,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.8kg weight",
+        "40.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-b0a2dad263e8"
+      ]
+    },
+    {
+      "productId": "l-60bc9f0487b1",
+      "name": "HP 15s-eq1580AU",
+      "category": "laptop",
+      "price": 31990,
+      "cost": 26872,
+      "inventory": 14,
+      "features": [
+        "Ryzen processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.8kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-b0a2dad263e8"
+      ]
+    },
+    {
+      "productId": "l-057d315603da",
+      "name": "Acer Aspire Lite AL15-51 UN.431SI.252",
+      "category": "laptop",
+      "price": 32390,
+      "cost": 28503,
+      "inventory": 21,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-0b49c5b231ed"
+      ]
+    },
+    {
+      "productId": "l-7ed752d3ea6e",
+      "name": "Acer One 14 Z8-415 Core i5 8GB/512GB",
+      "category": "laptop",
+      "price": 32990,
+      "cost": 29856,
+      "inventory": 28,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "45.5Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-c364af653b7f"
+      ]
+    },
+    {
+      "productId": "l-35931fe6d18a",
+      "name": "Acer One 14 Z8-415 2023",
+      "category": "laptop",
+      "price": 33990,
+      "cost": 29231,
+      "inventory": 35,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "45.5Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-51d2de1ebee4",
+      "name": "Dell Inspiron 3520 D560896WIN9B",
+      "category": "laptop",
+      "price": 33990,
+      "cost": 28892,
+      "inventory": 42,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-b98c0300f103"
+      ]
+    },
+    {
+      "productId": "l-cbdab0731bc9",
+      "name": "Acer One 14 Z8-415",
+      "category": "laptop",
+      "price": 34200,
+      "cost": 28728,
+      "inventory": 49,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "45.5Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-b98c0300f103"
+      ]
+    },
+    {
+      "productId": "l-3b03dd4b904a",
+      "name": "Lenovo IdeaPad Slim 3 82RK00VWIN",
+      "category": "laptop",
+      "price": 35091,
+      "cost": 30880,
+      "inventory": 56,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "business"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p12",
+        "p11"
+      ],
+      "upsell": [
+        "l-127e5713e9a2"
+      ]
+    },
+    {
+      "productId": "l-e5ceb849b1a9",
+      "name": "ASUS VivoBook 14 X415EA-EK344WS",
+      "category": "laptop",
+      "price": 35990,
+      "cost": 31311,
+      "inventory": 4,
+      "features": [
+        "Core i3 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-f9abc8ca12e9",
+      "name": "ASUS VivoBook 15 X515EA-EJ342WS",
+      "category": "laptop",
+      "price": 35990,
+      "cost": 30951,
+      "inventory": 17,
+      "features": [
+        "Core i3 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-3cd85e331425",
+      "name": "HP 14-ep0068TU",
+      "category": "laptop",
+      "price": 35990,
+      "cost": 30592,
+      "inventory": 24,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "business",
+        "travel"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-03c148e14f8b"
+      ]
+    },
+    {
+      "productId": "l-da8c382e8271",
+      "name": "HP 15s-fq5007TU",
+      "category": "laptop",
+      "price": 35990,
+      "cost": 30232,
+      "inventory": 31,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "business"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p12",
+        "p11"
+      ],
+      "upsell": [
+        "l-03c148e14f8b"
+      ]
+    },
+    {
+      "productId": "l-079d073de21c",
+      "name": "HP 15s-fy5003TU",
+      "category": "laptop",
+      "price": 36490,
+      "cost": 32111,
+      "inventory": 38,
+      "features": [
+        "Core i3 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "light work",
+        "business"
+      ],
+      "tags": [
+        "entry-level",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p9",
+        "p12",
+        "p11"
+      ],
+      "upsell": [
+        "l-aca99f039948"
+      ]
+    },
+    {
+      "productId": "l-a5a964f9dc45",
+      "name": "Infinix INBook X2 Slim Series XL23 2023",
+      "category": "laptop",
+      "price": 36990,
+      "cost": 32181,
+      "inventory": 45,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.2kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-98fe2fc1bf2a",
+      "name": "Infinix INBook X3 Slim XL422",
+      "category": "laptop",
+      "price": 36990,
+      "cost": 33661,
+      "inventory": 52,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.2kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-d7f0dd500a54",
+      "name": "MSI Modern 14 C7M-062IN",
+      "category": "laptop",
+      "price": 37990,
+      "cost": 32292,
+      "inventory": 59,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.4kg weight",
+        "39.3Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-fb867be8e3c3",
+      "name": "Acer Aspire Lite 15 AL15-52 Core i3 16GB/1024GB",
+      "category": "laptop",
+      "price": 38249,
+      "cost": 32129,
+      "inventory": 3,
+      "features": [
+        "Core i3 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-40fbe494c238",
+      "name": "Acer Aspire Lite AL15-41",
+      "category": "laptop",
+      "price": 38790,
+      "cost": 34135,
+      "inventory": 0,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b0a2dad263e8",
+      "name": "ASUS Vivobook 15 X1502ZA-EJ993WS",
+      "category": "laptop",
+      "price": 39990,
+      "cost": 34791,
+      "inventory": 27,
+      "features": [
+        "Core i3 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "42.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-0b49c5b231ed",
+      "name": "Lenovo IdeaPad 1 15ALC7 82R400ERIN",
+      "category": "laptop",
+      "price": 40490,
+      "cost": 34821,
+      "inventory": 34,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.6kg weight",
+        "42.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-c364af653b7f",
+      "name": "HP 15s-fy5004TU",
+      "category": "laptop",
+      "price": 41199,
+      "cost": 35019,
+      "inventory": 41,
+      "features": [
+        "Core i3 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b98c0300f103",
+      "name": "Acer Aspire Lite AL15-51 2023 Core i5 16GB/512GB",
+      "category": "laptop",
+      "price": 42600,
+      "cost": 35784,
+      "inventory": 48,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-8df967cff022",
+      "name": "Samsung Galaxy Book2 NP550XED-KA1IN 15",
+      "category": "laptop",
+      "price": 42990,
+      "cost": 37831,
+      "inventory": 55,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "43.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-b6c7504dd13c"
+      ]
+    },
+    {
+      "productId": "l-127e5713e9a2",
+      "name": "ASUS VivoBook 14 X1400EA-EK543WS",
+      "category": "laptop",
+      "price": 43990,
+      "cost": 38271,
+      "inventory": 9,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "37.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-01fac9800a97",
+      "name": "Zebronics ZEB-NBC 5S 2023",
+      "category": "laptop",
+      "price": 43990,
+      "cost": 37831,
+      "inventory": 2,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "38.5Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-03c148e14f8b",
+      "name": "ASUS Vivobook 15 X515EA-EJ542WS",
+      "category": "laptop",
+      "price": 44799,
+      "cost": 40543,
+      "inventory": 23,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-5843887a659f",
+      "name": "Dell Inspiron 15 3511 IN35117W5CCS01ORB1",
+      "category": "laptop",
+      "price": 44890,
+      "cost": 37708,
+      "inventory": 30,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "entry-level",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-c336783613d1"
+      ]
+    },
+    {
+      "productId": "l-aca99f039948",
+      "name": "MSI Thin GF63 11SC-1493IN Gaming",
+      "category": "laptop",
+      "price": 45990,
+      "cost": 37482,
+      "inventory": 37,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-1c94ae43f24a",
+      "name": "ASUS Vivobook 16X 2022 M1603QA-MB502WS",
+      "category": "laptop",
+      "price": 46990,
+      "cost": 40411,
+      "inventory": 44,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "browsing",
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-f148ed933285",
+      "name": "Dell Vostro 3420",
+      "category": "laptop",
+      "price": 46990,
+      "cost": 39707,
+      "inventory": 51,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-a7413b645d20",
+      "name": "Acer TravelMate P2 TMP214-53 Business",
+      "category": "laptop",
+      "price": 47990,
+      "cost": 39832,
+      "inventory": 58,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-ed56b40f9888",
+      "name": "Lenovo IdeaPad 3 82KU024JIN",
+      "category": "laptop",
+      "price": 48290,
+      "cost": 39356,
+      "inventory": 12,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.6kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-e52d4aae66e1",
+      "name": "HP 15S-FQ5202TU",
+      "category": "laptop",
+      "price": 48490,
+      "cost": 41701,
+      "inventory": 1,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-ef85e854860d"
+      ]
+    },
+    {
+      "productId": "l-dc863c43363a",
+      "name": "Acer Aspire Lite AL15-52 15",
+      "category": "laptop",
+      "price": 49199,
+      "cost": 41573,
+      "inventory": 26,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-93b8d22e621b",
+      "name": "Lenovo IdeaPad Gaming 3 15ACH6 82K20289IN",
+      "category": "laptop",
+      "price": 49921,
+      "cost": 41434,
+      "inventory": 33,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight"
+      ],
+      "useCases": [
+        "browsing",
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-c955f8f1f076",
+      "name": "ASUS TUF F15 FX506HF-HN024W Gaming",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 40742,
+      "inventory": 40,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-ef85e854860d"
+      ]
+    },
+    {
+      "productId": "l-8535f52d06ee",
+      "name": "ASUS TUF Gaming F15  FX506HF-HN075W Gaming",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 45491,
+      "inventory": 47,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight"
+      ],
+      "useCases": [
+        "browsing",
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-1f7257b8aaec",
+      "name": "ASUS Vivobook Pro 15 M6500QF-HN521WS",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 42242,
+      "inventory": 54,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-ef85e854860d"
+      ]
+    },
+    {
+      "productId": "l-0e384f6b10ac",
+      "name": "HP 15s-fy5002TU",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 41492,
+      "inventory": 8,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-ef85e854860d"
+      ]
+    },
+    {
+      "productId": "l-c478396bc24b",
+      "name": "Infinix INBook X2 Plus",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 40742,
+      "inventory": 15,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-8498b13e2f04",
+      "name": "Infinix Zerobook ZL513 2023",
+      "category": "laptop",
+      "price": 49990,
+      "cost": 42991,
+      "inventory": 5,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b69b89d73d38",
+      "name": "Lenovo IdeaPad Gaming 3 82K101PCIN",
+      "category": "laptop",
+      "price": 50490,
+      "cost": 42664,
+      "inventory": 29,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-73ef2442b7f5"
+      ]
+    },
+    {
+      "productId": "l-5cbdfd99caf2",
+      "name": "Lenovo IdeaPad Gaming 3 15IHU6 82K101PCIN",
+      "category": "laptop",
+      "price": 50990,
+      "cost": 42322,
+      "inventory": 0,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-73ef2442b7f5"
+      ]
+    },
+    {
+      "productId": "l-f8100eb12e1f",
+      "name": "HP 15s-fr4001TU",
+      "category": "laptop",
+      "price": 50999,
+      "cost": 41564,
+      "inventory": 43,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-9e42c36af11b",
+      "name": "ASUS Vivobook 15 X1502ZA-EJ545WS",
+      "category": "laptop",
+      "price": 51990,
+      "cost": 44711,
+      "inventory": 50,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "42.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-373ea63ee87a",
+      "name": "Acer Aspire 7 A715-76G NH.QMYSI.001 Gaming",
+      "category": "laptop",
+      "price": 51990,
+      "cost": 43932,
+      "inventory": 57,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2161e0515362"
+      ]
+    },
+    {
+      "productId": "l-6efb16b04aa4",
+      "name": "Lenovo IdeaPad Gaming 3 82K101LHIN",
+      "category": "laptop",
+      "price": 52400,
+      "cost": 43492,
+      "inventory": 11,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-e09d160f0d8d",
+      "name": "ASUS TUF Gaming F15 FX506HF-HN076W Gaming",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 47956,
+      "inventory": 18,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-e11e7e8f0cbb",
+      "name": "ASUS Vivobook S14 Flip 2022 TN3402QA-LZ520WS",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 45571,
+      "inventory": 4,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.5kg weight"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-a05af1871856"
+      ]
+    },
+    {
+      "productId": "l-cd6c08b0500f",
+      "name": "Acer Aspire 5 A515-57G UN.K9TSI.002 Gaming",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 44777,
+      "inventory": 32,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-32f87a6255a4",
+      "name": "Lenovo IdeaPad Gaming 3 15IHU6 82K101PBIN",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 43982,
+      "inventory": 39,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-e27ca7f1a643"
+      ]
+    },
+    {
+      "productId": "l-712dae8a499f",
+      "name": "MSI Thin GF63 11UC-1490IN Gaming",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 43187,
+      "inventory": 46,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "52.4Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-c0103a7a58e1",
+      "name": "Samsung Galaxy Book2 NP550XED-KA2IN",
+      "category": "laptop",
+      "price": 52990,
+      "cost": 45571,
+      "inventory": 53,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "43.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b6c7504dd13c",
+      "name": "Acer Aspire Lite 15 2023 AL15-51",
+      "category": "laptop",
+      "price": 53499,
+      "cost": 45207,
+      "inventory": 60,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "36.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-cdbf54bff0e8",
+      "name": "Acer Aspire 7 A715-76G UN.QMYSI.002 Gaming",
+      "category": "laptop",
+      "price": 53990,
+      "cost": 44812,
+      "inventory": 14,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-ad6929ad7646",
+      "name": "Acer Aspire 7 A715-76G UN.QMESI.004 Gaming",
+      "category": "laptop",
+      "price": 54199,
+      "cost": 44172,
+      "inventory": 21,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-5795547220bf",
+      "name": "Acer Aspire 7 A715-76G NH.QMESI.002 Gaming",
+      "category": "laptop",
+      "price": 54299,
+      "cost": 46697,
+      "inventory": 3,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-a05af1871856"
+      ]
+    },
+    {
+      "productId": "l-b68b748dbbc3",
+      "name": "HP Victus 15-fb0134AX Gaming",
+      "category": "laptop",
+      "price": 54559,
+      "cost": 46102,
+      "inventory": 35,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "2.4kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-a8bb848144ee",
+      "name": "Lenovo Ideapad Gaming 3 82SB00NXIN",
+      "category": "laptop",
+      "price": 54790,
+      "cost": 49859,
+      "inventory": 42,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-c336783613d1",
+      "name": "Lenovo IdeaPad Slim 3 83ER008DIN",
+      "category": "laptop",
+      "price": 54990,
+      "cost": 44817,
+      "inventory": 49,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "47.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-def98c0e5d9b",
+      "name": "HP 15s-ey2001AU",
+      "category": "laptop",
+      "price": 56267,
+      "cost": 48390,
+      "inventory": 56,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-fe54fabbcd67"
+      ]
+    },
+    {
+      "productId": "l-5597e1a8c778",
+      "name": "HP Victus 15-fa1132TX",
+      "category": "laptop",
+      "price": 56990,
+      "cost": 48157,
+      "inventory": 10,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-039ca65420c2"
+      ]
+    },
+    {
+      "productId": "l-f19e58ea75dc",
+      "name": "MSI Thin GF63 11UCX-1492IN Gaming",
+      "category": "laptop",
+      "price": 56990,
+      "cost": 47302,
+      "inventory": 17,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "52.4Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-a753d6cae811",
+      "name": "Acer Aspire 7 A715-76G NH.QMFSI.004 Gaming",
+      "category": "laptop",
+      "price": 57990,
+      "cost": 47262,
+      "inventory": 24,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-971aab743f9f",
+      "name": "HP Pavilion 15-eh1147AU",
+      "category": "laptop",
+      "price": 57990,
+      "cost": 49871,
+      "inventory": 2,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-d72aef5046a0",
+      "name": "Lenovo Thinkpad E15 G4 21DJA0Y0IN",
+      "category": "laptop",
+      "price": 57990,
+      "cost": 49002,
+      "inventory": 38,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-60e80ea793ec",
+      "name": "MSI GF63 Thin 11SC-1298IN Gaming",
+      "category": "laptop",
+      "price": 57990,
+      "cost": 48132,
+      "inventory": 45,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "52.4Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-a6753861763b",
+      "name": "HP Victus 15-fb0131AX Gaming",
+      "category": "laptop",
+      "price": 58800,
+      "cost": 47922,
+      "inventory": 0,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "2.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-b5ed58954b50"
+      ]
+    },
+    {
+      "productId": "l-c6fd3be72aca",
+      "name": "HP 15-fd0012TU",
+      "category": "laptop",
+      "price": 58890,
+      "cost": 50645,
+      "inventory": 59,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-b5ed58954b50"
+      ]
+    },
+    {
+      "productId": "l-ab15f217816d",
+      "name": "MSI GF63 Thin 11UC-1295IN Gaming",
+      "category": "laptop",
+      "price": 58990,
+      "cost": 53386,
+      "inventory": 13,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-922fb1533581",
+      "name": "Huawei MateBook D14 2023",
+      "category": "laptop",
+      "price": 58999,
+      "cost": 48969,
+      "inventory": 20,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-2bdbfd241eb6",
+      "name": "MSI Bravo 15 B5ED-035IN Gaming",
+      "category": "laptop",
+      "price": 59890,
+      "cost": 48810,
+      "inventory": 27,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "2.4kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-3f5287a4a1ac",
+      "name": "ASUS TUF Gaming F15 FX506HC-HN362WS Gaming",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 51591,
+      "inventory": 1,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-4495f058238e",
+      "name": "ASUS Vivobook 15 X1502ZA-EJ741WS",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 50692,
+      "inventory": 41,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "42.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-d87ff0cecae8",
+      "name": "ASUS Vivobook Pro 15 M6500QFB-LK541WS",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 49792,
+      "inventory": 48,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-9e80594b21c4",
+      "name": "Acer Aspire 5 2023 A515-58GM Gaming",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 48892,
+      "inventory": 55,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-db7902f89a42",
+      "name": "HP 15-fd0021TU",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 51591,
+      "inventory": 9,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-184ad178be0c"
+      ]
+    },
+    {
+      "productId": "l-d7f51e288d4b",
+      "name": "HP Victus 15-fb0135AX Gaming",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 50692,
+      "inventory": 16,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-184ad178be0c"
+      ]
+    },
+    {
+      "productId": "l-d1abfaa47d06",
+      "name": "MSI Bravo 15 B5ED-034IN Gaming",
+      "category": "laptop",
+      "price": 59990,
+      "cost": 49792,
+      "inventory": 23,
+      "features": [
+        "Ryzen 7 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "2.4kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-184ad178be0c"
+      ]
+    },
+    {
+      "productId": "l-7506b5814414",
+      "name": "HP 15-fd0013TU",
+      "category": "laptop",
+      "price": 61690,
+      "cost": 50277,
+      "inventory": 30,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-7a460e7d7190",
+      "name": "MSI Thin GF63 11UCX-1491IN Gaming",
+      "category": "laptop",
+      "price": 61990,
+      "cost": 56411,
+      "inventory": 5,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "52.4Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-f3e8d535f785",
+      "name": "Lenovo IdeaPad Slim 3i 82RK011EIN",
+      "category": "laptop",
+      "price": 62490,
+      "cost": 52804,
+      "inventory": 44,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-ef85e854860d",
+      "name": "ASUS Vivobook 15X OLED M3504YA-LK752WS",
+      "category": "laptop",
+      "price": 62990,
+      "cost": 52282,
+      "inventory": 51,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.7kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-73ef2442b7f5",
+      "name": "ASUS Vivobook Pro 15 M6500QF-HN741WS",
+      "category": "laptop",
+      "price": 62990,
+      "cost": 51337,
+      "inventory": 58,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-7816c2b98be1",
+      "name": "HP Victus 15-fa1145TX Gaming",
+      "category": "laptop",
+      "price": 62990,
+      "cost": 54171,
+      "inventory": 12,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "52.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-2f1e3eb7bffe",
+      "name": "Lenovo IdeaPad Slim 5 14IAH8 83BF0045IN",
+      "category": "laptop",
+      "price": 62990,
+      "cost": 53227,
+      "inventory": 19,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "56.6Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-688c20f895f9",
+      "name": "Samsung Galaxy Book2 Pro 13",
+      "category": "laptop",
+      "price": 62990,
+      "cost": 52282,
+      "inventory": 26,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "13.3-inch display",
+        "Full HD display",
+        "intel graphics",
+        "0.9kg weight"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-91afceecc10d",
+      "name": "Lenovo IdeaPad Gaming 3 15ACH6 82K2022YIN",
+      "category": "laptop",
+      "price": 63990,
+      "cost": 52152,
+      "inventory": 33,
+      "features": [
+        "Ryzen 5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-aaa262963fde"
+      ]
+    },
+    {
+      "productId": "l-a60410b6addf",
+      "name": "Lenovo Yoga Slim 6 14IAP8 82WU0095IN",
+      "category": "laptop",
+      "price": 64690,
+      "cost": 55633,
+      "inventory": 4,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "65.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-2161e0515362",
+      "name": "HP Victus 15-fb0137AX Gaming",
+      "category": "laptop",
+      "price": 64990,
+      "cost": 54917,
+      "inventory": 47,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-a05af1871856",
+      "name": "Lenovo IdeaPad Slim 5 14IAH8 83BF0043IN",
+      "category": "laptop",
+      "price": 64990,
+      "cost": 53942,
+      "inventory": 54,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "56.6Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-34e78cba2291",
+      "name": "Acer Nitro 5 AN515-58 NH.QFHSI.008 Gaming",
+      "category": "laptop",
+      "price": 65990,
+      "cost": 59721,
+      "inventory": 8,
+      "features": [
+        "Core i5 processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "57.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-d422de1db413"
+      ]
+    },
+    {
+      "productId": "l-e27ca7f1a643",
+      "name": "HP Pavilion 14-dv2153TU",
+      "category": "laptop",
+      "price": 66990,
+      "cost": 57611,
+      "inventory": 0,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "43.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-2daf1eee37eb",
+      "name": "HP Pavilion 15-eg3079TU",
+      "category": "laptop",
+      "price": 66990,
+      "cost": 56607,
+      "inventory": 22,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-fe54fabbcd67",
+      "name": "Infinix Zerobook 13 ZL513 2023",
+      "category": "laptop",
+      "price": 66990,
+      "cost": 55602,
+      "inventory": 29,
+      "features": [
+        "Core i7 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-4d93484a673b",
+      "name": "ASUS Vivobook 16X K3605ZC-MBN541WS",
+      "category": "laptop",
+      "price": 67990,
+      "cost": 55412,
+      "inventory": 36,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-73644bd4d055",
+      "name": "ASUS Vivobook 16X K3605ZC-MBN542WS",
+      "category": "laptop",
+      "price": 67990,
+      "cost": 58471,
+      "inventory": 3,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-e8664b08b767",
+      "name": "ASUS Zenbook 14X OLED 2023 UX5401ZA-KM541WS",
+      "category": "laptop",
+      "price": 67990,
+      "cost": 57452,
+      "inventory": 50,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "2K display",
+        "intel graphics",
+        "1.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-75a988b7be69",
+      "name": "HP Victus 15-fa0555TX",
+      "category": "laptop",
+      "price": 67990,
+      "cost": 56432,
+      "inventory": 57,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-2f30de4f6d84"
+      ]
+    },
+    {
+      "productId": "l-a29af94a2281",
+      "name": "MSI Modern 14 D13MG-072IN",
+      "category": "laptop",
+      "price": 68990,
+      "cost": 56227,
+      "inventory": 11,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-1f01399add16",
+      "name": "HP Pavilion Plus 14-eh1022TU",
+      "category": "laptop",
+      "price": 69490,
+      "cost": 59761,
+      "inventory": 18,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "51.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-cd2586750612",
+      "name": "Dell G15-5520",
+      "category": "laptop",
+      "price": 69890,
+      "cost": 59057,
+      "inventory": 25,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-7cca002dc9b9",
+      "name": "ASUS TUF Gaming F15 FX506HE-HN382W Gaming",
+      "category": "laptop",
+      "price": 69990,
+      "cost": 63691,
+      "inventory": 32,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-35bd312991f6",
+      "name": "ASUS Vivobook Pro 15 M6500QC-HN551WS",
+      "category": "laptop",
+      "price": 69990,
+      "cost": 57042,
+      "inventory": 39,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-8482d287aff1",
+      "name": "Acer Nitro 5 AN515-47 Gaming",
+      "category": "laptop",
+      "price": 69990,
+      "cost": 60191,
+      "inventory": 2,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "57.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-594ed1972817",
+      "name": "Acer Nitro 5 AN515-58 UN.QFHSI.026 Gaming",
+      "category": "laptop",
+      "price": 69990,
+      "cost": 59142,
+      "inventory": 53,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "57.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-5fc7f28e52da",
+      "name": "HP Pavilion 15-eg3017TU",
+      "category": "laptop",
+      "price": 70490,
+      "cost": 58507,
+      "inventory": 60,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-6eacdd087151",
+      "name": "Dell Inspiron 2023 14 5430",
+      "category": "laptop",
+      "price": 70790,
+      "cost": 57694,
+      "inventory": 14,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "54.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-039ca65420c2",
+      "name": "ASUS Zenbook 14X OLED 2023 UM5401QA-KM751WS",
+      "category": "laptop",
+      "price": 70990,
+      "cost": 61051,
+      "inventory": 21,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "2K display",
+        "amd graphics",
+        "1.4kg weight",
+        "63.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-f18611c77c78",
+      "name": "Lenovo IdeaPad Gaming 3 15IAH7 82S9014LIN",
+      "category": "laptop",
+      "price": 71990,
+      "cost": 60832,
+      "inventory": 28,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "60.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-793257d67814",
+      "name": "HP Victus 15-fb0136AX Gaming",
+      "category": "laptop",
+      "price": 71999,
+      "cost": 59759,
+      "inventory": 35,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-77aed9aacee3",
+      "name": "Lenovo Ideapad Slim 5 82XD006GIN",
+      "category": "laptop",
+      "price": 72190,
+      "cost": 58835,
+      "inventory": 42,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "56.6Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b4dceb63743a",
+      "name": "HP Pavilion 15-eg3018TU",
+      "category": "laptop",
+      "price": 72490,
+      "cost": 62341,
+      "inventory": 1,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.7kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-6c2e1a039c15",
+      "name": "ASUS TUF Gaming F15 2022 FX507ZC4-HN116W Gaming",
+      "category": "laptop",
+      "price": 72990,
+      "cost": 66056,
+      "inventory": 56,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-b5ed58954b50",
+      "name": "ASUS Vivobook Pro 15 M6500QC-HN751WS",
+      "category": "laptop",
+      "price": 73990,
+      "cost": 61412,
+      "inventory": 10,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-168928c106c6",
+      "name": "HP Pavilion x360 14-ek1010TU",
+      "category": "laptop",
+      "price": 74490,
+      "cost": 60709,
+      "inventory": 17,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "43.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-184ad178be0c",
+      "name": "ASUS TUF Gaming F15 FX506HE-HN385WS Gaming",
+      "category": "laptop",
+      "price": 74990,
+      "cost": 64491,
+      "inventory": 24,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-2f30de4f6d84",
+      "name": "Infinix Zerobook 2023",
+      "category": "laptop",
+      "price": 74990,
+      "cost": 63367,
+      "inventory": 0,
+      "features": [
+        "Core i9 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-72af3d3fb8ad",
+      "name": "ASUS Vivobook Pro 15 OLED M6500QC-LK751WS",
+      "category": "laptop",
+      "price": 76990,
+      "cost": 63902,
+      "inventory": 38,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-558c89a4cbb8",
+      "name": "MSI Thin GF63 12VE-267IN Gaming",
+      "category": "laptop",
+      "price": 76990,
+      "cost": 62747,
+      "inventory": 45,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-9797b972b251",
+      "name": "Acer Nitro V ANV15-51 2023 Gaming",
+      "category": "laptop",
+      "price": 77990,
+      "cost": 67071,
+      "inventory": 5,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-998bad615e4f",
+      "name": "Dell G15-5520 2023",
+      "category": "laptop",
+      "price": 77990,
+      "cost": 65902,
+      "inventory": 59,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-3d2f8b8247d3",
+      "name": "MSI Modern 14 D13MG-071IN",
+      "category": "laptop",
+      "price": 78990,
+      "cost": 65562,
+      "inventory": 13,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-aaa262963fde",
+      "name": "ASUS Vivobook 14X K3405ZFB-KM752WS",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 65192,
+      "inventory": 20,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "2K display",
+        "nvidia graphics",
+        "1.4kg weight",
+        "63.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-e5711454d809",
+      "name": "Apple MacBook Air 2020 MGND3HN",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 72791,
+      "inventory": 27,
+      "features": [
+        "CPU processor",
+        "8GB RAM",
+        "256GB storage",
+        "13.3-inch display",
+        "2K display",
+        "apple graphics",
+        "1.3kg weight",
+        "49.9Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-0696bcc95b9c"
+      ]
+    },
+    {
+      "productId": "l-bcfe3fa20efe",
+      "name": "Dell 15 G15-5530 Gaming",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 67592,
+      "inventory": 34,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-f8ace2039fea",
+      "name": "HP Victus 16-s0095AX Gaming",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 66392,
+      "inventory": 41,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-002ff09aa307",
+      "name": "Lenovo IdeaPad Slim 5 14IMH9 83DA0043IN",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 65192,
+      "inventory": 48,
+      "features": [
+        "Core Ultra 5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.5kg weight",
+        "57.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-d4dc01b328bc",
+      "name": "Lenovo LOQ 15IRH8 82XV00F5IN 2023 Gaming",
+      "category": "laptop",
+      "price": 79990,
+      "cost": 68791,
+      "inventory": 4,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "60.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-3eef64842126",
+      "name": "HP Victus 16-s0089AX Gaming",
+      "category": "laptop",
+      "price": 80490,
+      "cost": 68014,
+      "inventory": 9,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-d9289cb1820a",
+      "name": "Lenovo Yoga Slim 6 14IRH8 83E00015IN",
+      "category": "laptop",
+      "price": 80990,
+      "cost": 67222,
+      "inventory": 16,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "65.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-e5ab8a3007c2",
+      "name": "Huawei MateBook 14s 2023",
+      "category": "laptop",
+      "price": 80999,
+      "cost": 66014,
+      "inventory": 23,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.2-inch display",
+        "2K display",
+        "intel graphics",
+        "1.4kg weight",
+        "60.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-05768de24a72",
+      "name": "Lenovo Ideapad Gaming 3 15ACH6 82K20145IN",
+      "category": "laptop",
+      "price": 81000,
+      "cost": 69660,
+      "inventory": 30,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "45.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-c49f2803aab2",
+      "name": "ASUS Zenbook Flip 14 OLED UP5401ZA-KU541WS",
+      "category": "laptop",
+      "price": 81088,
+      "cost": 68519,
+      "inventory": 37,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "14.0-inch display",
+        "4K display",
+        "intel graphics",
+        "1.4kg weight",
+        "63.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-be8ce81f9207",
+      "name": "Lenovo Yoga Slim 6 14IRH8",
+      "category": "laptop",
+      "price": 81400,
+      "cost": 67562,
+      "inventory": 44,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.4kg weight",
+        "65.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-527e3e44cf15",
+      "name": "HP Victus 16-s0094AX Gaming",
+      "category": "laptop",
+      "price": 81490,
+      "cost": 73748,
+      "inventory": 51,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-d422de1db413",
+      "name": "ASUS Vivobook 16X 2023 K3605ZC-MBN752WS",
+      "category": "laptop",
+      "price": 82990,
+      "cost": 71371,
+      "inventory": 3,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-548f5f0a8781",
+      "name": "ASUS ROG Strix G15 G513RC-HN251WS Gaming",
+      "category": "laptop",
+      "price": 83990,
+      "cost": 70972,
+      "inventory": 12,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.1kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-5261fbafff58",
+      "name": "Dell G15-5530 Gaming",
+      "category": "laptop",
+      "price": 83990,
+      "cost": 69712,
+      "inventory": 19,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-9e7e4df8a2cb",
+      "name": "ASUS ROG Flow X13 GV301RC-LJ132WS Gaming",
+      "category": "laptop",
+      "price": 84990,
+      "cost": 69267,
+      "inventory": 26,
+      "features": [
+        "Ryzen 9 processor",
+        "16GB RAM",
+        "512GB storage",
+        "13.4-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.3kg weight",
+        "62.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "gaming",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-d359fa107f0e",
+      "name": "ASUS TUF Gaming F15 FX577ZC-HN192W Gaming",
+      "category": "laptop",
+      "price": 84990,
+      "cost": 73091,
+      "inventory": 33,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-b9f0f2447880",
+      "name": "HP Victus 15-fa0187TX Gaming",
+      "category": "laptop",
+      "price": 85990,
+      "cost": 72662,
+      "inventory": 40,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight",
+        "70.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-b29db27ee18f",
+      "name": "Lenovo Yoga 6 13ABR8 83B2007UIN",
+      "category": "laptop",
+      "price": 86190,
+      "cost": 71538,
+      "inventory": 0,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "13.3-inch display",
+        "Full HD display",
+        "amd graphics",
+        "1.4kg weight",
+        "59.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-4512484e4468",
+      "name": "Dell Inspiron 5430",
+      "category": "laptop",
+      "price": 86730,
+      "cost": 70685,
+      "inventory": 54,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "54.0Wh battery"
+      ],
+      "useCases": [
+        "student",
+        "browsing",
+        "productivity",
+        "business",
+        "programming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-0b5a2e413115",
+      "name": "ASUS TUF Gaming F15 90NR0GW1-M00F00",
+      "category": "laptop",
+      "price": 86990,
+      "cost": 74811,
+      "inventory": 2,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-705a7cca97ce",
+      "name": "HP Pavilion Plus 14-ey0789AU",
+      "category": "laptop",
+      "price": 86990,
+      "cost": 73507,
+      "inventory": 15,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "2K display",
+        "amd graphics",
+        "1.4kg weight",
+        "68.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-b361c20988a9",
+      "name": "MSI Thin GF63 12VF-268IN",
+      "category": "laptop",
+      "price": 86990,
+      "cost": 79161,
+      "inventory": 22,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "51.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-47ba779ee7eb",
+      "name": "HP 15-eg3036TU",
+      "category": "laptop",
+      "price": 87890,
+      "cost": 71630,
+      "inventory": 29,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.8kg weight",
+        "41.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-e0445ee0c99e",
+      "name": "ASUS ROG Flow X13 GV301RC-LJ073WS Gaming",
+      "category": "laptop",
+      "price": 89990,
+      "cost": 77391,
+      "inventory": 36,
+      "features": [
+        "Ryzen 9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "13.4-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.3kg weight",
+        "62.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "gaming",
+        "travel"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-fe90e5dfc4fc",
+      "name": "Acer Nitro 5 AN515-58 NH.QLZSI.001 Gaming",
+      "category": "laptop",
+      "price": 89990,
+      "cost": 76042,
+      "inventory": 43,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "mid-range",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-730555e1a435",
+      "name": "MSI Thin GF63 12VE-664IN Gaming",
+      "category": "laptop",
+      "price": 90990,
+      "cost": 72792,
+      "inventory": 50,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-c7d4f995e257",
+      "name": "Acer Nitro 5 AN515-46 Gaming",
+      "category": "laptop",
+      "price": 93566,
+      "cost": 78595,
+      "inventory": 57,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight",
+        "57.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-862e48f4e12d",
+      "name": "Lenovo Yoga 7 82YM0074IN",
+      "category": "laptop",
+      "price": 94190,
+      "cost": 77236,
+      "inventory": 1,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "2K display",
+        "amd graphics",
+        "1.5kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-a1eb7f280cc8",
+      "name": "ASUS ROG Strix G16 2023 G614JJ-N3088WS Gaming",
+      "category": "laptop",
+      "price": 94990,
+      "cost": 75992,
+      "inventory": 18,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-8427b9023bc4",
+      "name": "MSI Sword 15 A12VF-401IN Gaming",
+      "category": "laptop",
+      "price": 94990,
+      "cost": 79792,
+      "inventory": 25,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-c496b101ffc6",
+      "name": "Acer Predator Helios Neo 16 NH.QLTSI.001",
+      "category": "laptop",
+      "price": 97990,
+      "cost": 80352,
+      "inventory": 32,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "512GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-180586891b86"
+      ]
+    },
+    {
+      "productId": "l-dedcb643d6b8",
+      "name": "Apple MacBook Air 2022",
+      "category": "laptop",
+      "price": 99900,
+      "cost": 79920,
+      "inventory": 39,
+      "features": [
+        "CPU processor",
+        "8GB RAM",
+        "256GB storage",
+        "13.6-inch display",
+        "2K display",
+        "Integrated graphics",
+        "1.2kg weight",
+        "52.6Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "travel"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-907854450623"
+      ]
+    },
+    {
+      "productId": "l-0696bcc95b9c",
+      "name": "ASUS TUF Gaming F15 2023 FX507ZV-LP094W Gaming",
+      "category": "laptop",
+      "price": 99990,
+      "cost": 90491,
+      "inventory": 46,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-ffd690dba48a",
+      "name": "Dell G15-5530 15 2023 Gaming",
+      "category": "laptop",
+      "price": 99990,
+      "cost": 81992,
+      "inventory": 53,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-e80b8b06c08f",
+      "name": "Dell G15-5530 GN5530194YM001ORB1 Gaming",
+      "category": "laptop",
+      "price": 101990,
+      "cost": 81592,
+      "inventory": 60,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.8kg weight",
+        "56.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-d8e3e0e97433",
+      "name": "Xiaomi Redmi G Pro 2024 Gaming",
+      "category": "laptop",
+      "price": 102990,
+      "cost": 86512,
+      "inventory": 5,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "2K display",
+        "nvidia graphics",
+        "2.7kg weight",
+        "80.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-bf93d310a00a",
+      "name": "HP Omen 16-XD0007ax Gaming",
+      "category": "laptop",
+      "price": 103990,
+      "cost": 85272,
+      "inventory": 21,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.3kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-f43e5c784b56",
+      "name": "MSI Thin A15 AI B7VE-065IN Gaming",
+      "category": "laptop",
+      "price": 103990,
+      "cost": 83192,
+      "inventory": 28,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "52.4Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-b3d71f9de2fb",
+      "name": "MSI Bravo 15 C7VFK-087IN Gaming",
+      "category": "laptop",
+      "price": 104989,
+      "cost": 88191,
+      "inventory": 35,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-7d17749992bf",
+      "name": "HP Omen 16-n0123AX Gaming",
+      "category": "laptop",
+      "price": 104990,
+      "cost": 86092,
+      "inventory": 42,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-6c4cba0aead1",
+      "name": "Dell G15-5525 D560896WIN9S Gaming",
+      "category": "laptop",
+      "price": 105299,
+      "cost": 84239,
+      "inventory": 49,
+      "features": [
+        "Ryzen 9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-1ab79816f1a2",
+      "name": "HP Omen 16-xd0005AX Gaming",
+      "category": "laptop",
+      "price": 106590,
+      "cost": 89536,
+      "inventory": 56,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-4e8e39d202a8",
+      "name": "Acer Swift Edge 16 2023",
+      "category": "laptop",
+      "price": 107399,
+      "cost": 88067,
+      "inventory": 0,
+      "features": [
+        "Ryzen processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "4K display",
+        "amd graphics",
+        "1.2kg weight"
+      ],
+      "useCases": [
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-f371c2a3f469",
+      "name": "MSI Cyborg 15 AI A1VEK-050IN Gaming",
+      "category": "laptop",
+      "price": 107990,
+      "cost": 98271,
+      "inventory": 4,
+      "features": [
+        "Core Ultra 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.0kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-987fe49c8d0f",
+      "name": "ASUS Vivobook S15 OLED 2023 S5504VA-MA953WS",
+      "category": "laptop",
+      "price": 109900,
+      "cost": 92316,
+      "inventory": 24,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "2K display",
+        "intel graphics",
+        "1.7kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-2122956e64e5",
+      "name": "ASUS ROG Strix G16 2023 G614JU-N3221WS Gaming",
+      "category": "laptop",
+      "price": 109990,
+      "cost": 90192,
+      "inventory": 31,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.5kg weight"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-896ce059a960",
+      "name": "ASUS Vivobook 16X 2023 K3605VC-MB951WS",
+      "category": "laptop",
+      "price": 109990,
+      "cost": 87992,
+      "inventory": 38,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.8kg weight",
+        "50.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-42666581126d",
+      "name": "Acer Predator Helios Neo 16 PHN16-71",
+      "category": "laptop",
+      "price": 109990,
+      "cost": 92392,
+      "inventory": 45,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "512GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-bd4f27a22a7d"
+      ]
+    },
+    {
+      "productId": "l-180586891b86",
+      "name": "MSI Commercial 14 H A13MG vPro-065IN",
+      "category": "laptop",
+      "price": 109990,
+      "cost": 90192,
+      "inventory": 52,
+      "features": [
+        "Core i7 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "14.0-inch display",
+        "Full HD display",
+        "intel graphics",
+        "1.6kg weight",
+        "53.8Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-8dd7b197bbe8",
+      "name": "MSI Katana 17 B12VFK-673IN Gaming",
+      "category": "laptop",
+      "price": 110990,
+      "cost": 88792,
+      "inventory": 59,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "17.3-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-3fde7860939b",
+      "name": "MSI Thin A15 AI B7VF-064IN Gaming",
+      "category": "laptop",
+      "price": 111990,
+      "cost": 94072,
+      "inventory": 13,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "1.9kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-561e93f6fb1b",
+      "name": "Acer Predator Helios Neo 16 PHN16-71 Gaming",
+      "category": "laptop",
+      "price": 112990,
+      "cost": 92652,
+      "inventory": 3,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-3c662dab829e",
+      "name": "MSI Cyborg 15 AI A1VFK-049IN Gaming",
+      "category": "laptop",
+      "price": 114990,
+      "cost": 91992,
+      "inventory": 27,
+      "features": [
+        "Core Ultra 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.0kg weight",
+        "53.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-b2b1902aaf13",
+      "name": "HP Zbook Power G4-A 2023 ZHAN 99",
+      "category": "laptop",
+      "price": 115558,
+      "cost": 97069,
+      "inventory": 34,
+      "features": [
+        "Ryzen 5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.2kg weight",
+        "52.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "business",
+        "programming",
+        "multitasking",
+        "video editing"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-fec1ab60b5ba",
+      "name": "HP Omen 16-xd0010AX Gaming",
+      "category": "laptop",
+      "price": 115999,
+      "cost": 104979,
+      "inventory": 41,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.1-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-c4744cdd1232",
+      "name": "MSI Prestige 16 A13UCX-250IN",
+      "category": "laptop",
+      "price": 119990,
+      "cost": 95992,
+      "inventory": 48,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "2K display",
+        "nvidia graphics",
+        "2.1kg weight",
+        "82.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-93e4e75d3b95"
+      ]
+    },
+    {
+      "productId": "l-907854450623",
+      "name": "HP Omen 16-xf0060AX Gaming",
+      "category": "laptop",
+      "price": 120900,
+      "cost": 101556,
+      "inventory": 55,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-d0b12c6bed21"
+      ]
+    },
+    {
+      "productId": "l-aaafbf9789ef",
+      "name": "Apple MacBook Air 15 2023",
+      "category": "laptop",
+      "price": 131590,
+      "cost": 107904,
+      "inventory": 9,
+      "features": [
+        "CPU processor",
+        "8GB RAM",
+        "512GB storage",
+        "15.3-inch display",
+        "2K display",
+        "Integrated graphics",
+        "1.5kg weight",
+        "66.5Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-d0b12c6bed21"
+      ]
+    },
+    {
+      "productId": "l-6e8464a1fd5a",
+      "name": "Lenovo Legion Slim 5 82Y9009JIN Gaming",
+      "category": "laptop",
+      "price": 132190,
+      "cost": 105752,
+      "inventory": 16,
+      "features": [
+        "Ryzen 7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "2K display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "80.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-d0b12c6bed21"
+      ]
+    },
+    {
+      "productId": "l-44bab6fd7c05",
+      "name": "ASUS ROG Flow X13 GV302XU-MU013WS Gaming",
+      "category": "laptop",
+      "price": 132900,
+      "cost": 111636,
+      "inventory": 2,
+      "features": [
+        "Ryzen 9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "13.4-inch display",
+        "2K display",
+        "nvidia graphics",
+        "1.3kg weight",
+        "75.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "gaming",
+        "travel"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-d0b12c6bed21"
+      ]
+    },
+    {
+      "productId": "l-bd4f27a22a7d",
+      "name": "HP Omen 16-xf0081AX Gaming",
+      "category": "laptop",
+      "price": 135999,
+      "cost": 111519,
+      "inventory": 30,
+      "features": [
+        "Ryzen 7 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-93e4e75d3b95",
+      "name": "ASUS Zenbook S13 OLED 2024 UX5304MA-NQ762WS",
+      "category": "laptop",
+      "price": 139990,
+      "cost": 111992,
+      "inventory": 37,
+      "features": [
+        "Core Ultra 7 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "13.3-inch display",
+        "2K display",
+        "intel graphics",
+        "1.0kg weight",
+        "63.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "travel"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-bf32ca29dcc0",
+      "name": "Lg Gram 17 2023 17Z90R-G.CH77A2",
+      "category": "laptop",
+      "price": 146990,
+      "cost": 123472,
+      "inventory": 44,
+      "features": [
+        "Core i7 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "17.0-inch display",
+        "2K display",
+        "nvidia graphics",
+        "1.4kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming"
+      ],
+      "crossSell": [
+        "p10",
+        "p21"
+      ],
+      "upsell": [
+        "l-4c8fd84be44d"
+      ]
+    },
+    {
+      "productId": "l-7d181f008c03",
+      "name": "Gigabyte Aorus 15 9SF Gaming",
+      "category": "laptop",
+      "price": 149990,
+      "cost": 122992,
+      "inventory": 51,
+      "features": [
+        "Core i5 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "15.6-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.4kg weight",
+        "99.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "high-end",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": [
+        "l-4c8fd84be44d"
+      ]
+    },
+    {
+      "productId": "l-d0b12c6bed21",
+      "name": "MSI Prestige 16 AI Studio B1VEG",
+      "category": "laptop",
+      "price": 159990,
+      "cost": 124792,
+      "inventory": 58,
+      "features": [
+        "Core Ultra 7 processor",
+        "32GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "2K display",
+        "nvidia graphics",
+        "1.6kg weight",
+        "99.9Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "premium",
+        "creator",
+        "developer",
+        "gaming",
+        "clear_overstock"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-4c8fd84be44d",
+      "name": "HP Spectre x360 16-aa0665TU",
+      "category": "laptop",
+      "price": 174490,
+      "cost": 158786,
+      "inventory": 12,
+      "features": [
+        "Core Ultra 7 processor",
+        "32GB RAM",
+        "2048GB storage",
+        "16.0-inch display",
+        "2K display",
+        "intel graphics",
+        "1.9kg weight",
+        "83.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking"
+      ],
+      "tags": [
+        "premium",
+        "creator",
+        "developer"
+      ],
+      "crossSell": [
+        "p11",
+        "p14",
+        "p19"
+      ],
+      "upsell": []
+    },
+    {
+      "productId": "l-170ff1411aad",
+      "name": "Acer Predator Helios Neo 16 2023 PHN16-71 Gaming",
+      "category": "laptop",
+      "price": 179990,
+      "cost": 143992,
+      "inventory": 19,
+      "features": [
+        "Core i9 processor",
+        "16GB RAM",
+        "1024GB storage",
+        "16.0-inch display",
+        "Full HD display",
+        "nvidia graphics",
+        "2.6kg weight",
+        "90.0Wh battery"
+      ],
+      "useCases": [
+        "productivity",
+        "programming",
+        "multitasking",
+        "video editing",
+        "gaming"
+      ],
+      "tags": [
+        "premium",
+        "creator",
+        "developer",
+        "gaming",
+        "bestseller"
+      ],
+      "crossSell": [
+        "p13",
+        "p14",
+        "p19"
+      ],
       "upsell": []
     }
   ]
