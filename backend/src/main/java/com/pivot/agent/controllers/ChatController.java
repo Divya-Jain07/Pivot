@@ -28,7 +28,7 @@ public class ChatController {
             .expireAfterAccess(Duration.ofHours(2))
             .build();
 
-    private final Cache<String, StringBuilder> sessionHistory = Caffeine.newBuilder()
+    private final Cache<String, String> sessionHistory = Caffeine.newBuilder()
             .maximumSize(10_000)
             .expireAfterAccess(Duration.ofHours(2))
             .build();
@@ -51,14 +51,9 @@ public class ChatController {
 
         sessionState.put(request.sessionId(), updatedState);
 
-        // Caffeine doesn't have computeIfAbsent; retrieve then create if missing
-        StringBuilder history = sessionHistory.getIfPresent(request.sessionId());
-        if (history == null) {
-            history = new StringBuilder();
-            sessionHistory.put(request.sessionId(), history);
-        }   
-        history.append("Customer: ").append(request.message()).append("\n");
-        
+        String compactSummary = buildCompactSummary(updatedState, request.message());
+        sessionHistory.put(request.sessionId(), compactSummary);
+
         // Run Phase 3, 4, 5
         return decisionPipelineService.runPipeline(request.message(), updatedState);
     }
@@ -71,16 +66,41 @@ public class ChatController {
     public String respondDecision(@RequestBody RespondRequest request) {
         AgentDecision decision = agentDecisionRepository.findById(request.decisionId())
                 .orElseThrow(() -> new RuntimeException("Decision not found"));
-                
-        StringBuilder history = sessionHistory.getIfPresent(request.sessionId());
-        if (history == null) history = new StringBuilder();
-        
-        String response = responsePhrasingService.generateResponse(decision, history.toString());
-        
-        // Append the AI's response to the history for the next turn
-        history.append("Agent: ").append(response).append("\n\n");
-        sessionHistory.put(request.sessionId(), history);
-        
+
+        String compactSummary = sessionHistory.getIfPresent(request.sessionId());
+        if (compactSummary == null || compactSummary.isBlank()) {
+            compactSummary = buildCompactSummary(decision.getExtractedState(), decision.getCustomerInput());
+        }
+
+        String response = responsePhrasingService.generateResponse(decision, compactSummary);
+
+        String updatedSummary = buildCompactSummary(decision.getExtractedState(), decision.getCustomerInput())
+                + "\nLast agent reply: " + response;
+        sessionHistory.put(request.sessionId(), updatedSummary);
+
         return response;
+    }
+
+    public static String buildCompactSummary(ExtractedState state, String latestMessage) {
+        StringBuilder summary = new StringBuilder();
+
+        if (state != null) {
+            summary.append("Budget: ").append(state.budget() == null ? "n/a" : state.budget());
+            summary.append(" | Use cases: ").append(state.useCases() == null || state.useCases().isEmpty() ? "n/a" : String.join(", ", state.useCases()));
+            summary.append(" | Primary use case: ").append(state.primaryUseCase() == null ? "n/a" : state.primaryUseCase());
+            summary.append(" | Priorities: ").append(state.priorities() == null || state.priorities().isEmpty() ? "n/a" : state.priorities());
+            summary.append(" | Negative preferences: ").append(state.negativePreferences() == null || state.negativePreferences().isEmpty() ? "n/a" : String.join(", ", state.negativePreferences()));
+            summary.append(" | Requested items: ").append(state.requestedItems() == null || state.requestedItems().isEmpty() ? "n/a" : String.join(", ", state.requestedItems()));
+            summary.append(" | Decision stage: ").append(state.decisionStage() == null ? "n/a" : state.decisionStage());
+        }
+
+        if (latestMessage != null && !latestMessage.isBlank()) {
+            if (summary.length() > 0) {
+                summary.append(" | ");
+            }
+            summary.append("Latest user message: ").append(latestMessage.trim());
+        }
+
+        return summary.toString();
     }
 }

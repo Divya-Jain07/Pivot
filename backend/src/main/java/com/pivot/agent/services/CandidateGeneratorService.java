@@ -15,31 +15,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CandidateGeneratorService {
 
+    private static final int MAX_BASE_CANDIDATES = 40;
+
     private final ProductRepository productRepository;
 
     public List<ActionCandidate> generateCandidates(ExtractedState state, Merchant merchant) {
+        List<Product> catalog = productRepository.findAll();
+        List<Product> products = catalog.stream()
+                .filter(product -> product != null && product.getInventory() > 0)
+                .filter(product -> state.category() == null || matchesCategory(product, state.category()))
+                .filter(product -> state.budget() == null || product.getPrice() <= state.budget() * 1.5)
+                .sorted(java.util.Comparator.comparing(Product::getPrice))
+                .limit(MAX_BASE_CANDIDATES)
+                .toList();
+
         List<ActionCandidate> candidates = new ArrayList<>();
-        
-        List<Product> products = productRepository.findByCategory(state.category());
-        if (products == null || products.isEmpty()) {
-            products = productRepository.findAll();
-        }
+        java.util.Map<String, Product> productById = catalog.stream()
+                .filter(product -> product != null && product.getProductId() != null)
+                .collect(java.util.stream.Collectors.toMap(Product::getProductId, product -> product, (left, right) -> left));
 
         for (Product product : products) {
-            // Inventory check is technically Phase 4 policy, but we filter purely out of stock
-            // Wait, instructions say: "filters seeded product list by category + budget range + inventory > 0"
-            if (product.getInventory() <= 0) continue;
-            
-            // Filter by category leniently (handle laptop vs laptops)
-            if (state.category() != null) {
-                String pCat = product.getCategory().toLowerCase();
-                String sCat = state.category().toLowerCase();
-                if (!pCat.contains(sCat) && !sCat.contains(pCat)) {
-                    continue;
-                }
-            }
-
-            // Generate BASE action
             candidates.add(ActionCandidate.builder()
                     .actionName("Buy " + product.getName())
                     .baseProduct(product)
@@ -49,10 +44,10 @@ public class CandidateGeneratorService {
                     .status("CONSIDERED")
                     .build());
 
-            // Generate BUNDLE actions from predefined cross-sells
             if (product.getCrossSell() != null) {
                 for (String crossId : product.getCrossSell()) {
-                    productRepository.findById(crossId).ifPresent(crossProd -> {
+                    Product crossProd = productById.get(crossId);
+                    if (crossProd != null && crossProd.getInventory() > 0) {
                         candidates.add(ActionCandidate.builder()
                                 .actionName("Buy " + product.getName() + " + " + crossProd.getName())
                                 .baseProduct(product)
@@ -61,24 +56,24 @@ public class CandidateGeneratorService {
                                 .type("BUNDLE")
                                 .status("CONSIDERED")
                                 .build());
-                    });
+                    }
                 }
             }
 
-            // Generate EXPLICIT DYNAMIC BUNDLE action
             if (state.requestedItems() != null && !state.requestedItems().isEmpty()) {
                 List<Product> dynamicBundle = new ArrayList<>();
                 for (String reqItem : state.requestedItems()) {
-                    productRepository.findAll().stream()
-                        .filter(p -> state.category() == null || !state.category().equalsIgnoreCase(p.getCategory())) // Don't bundle another laptop
-                        .filter(p -> (p.getCategory() != null && p.getCategory().toLowerCase().contains(reqItem.toLowerCase())) || 
-                                     (p.getName() != null && p.getName().toLowerCase().contains(reqItem.toLowerCase())))
-                        .findFirst()
-                        .ifPresent(dynamicBundle::add);
+                    catalog.stream()
+                            .filter(p -> p != null && p.getInventory() > 0)
+                            .filter(p -> !p.getProductId().equals(product.getProductId()))
+                            .filter(p -> state.category() == null || !state.category().equalsIgnoreCase(p.getCategory()))
+                            .filter(p -> matchesRequestedItem(p, reqItem))
+                            .findFirst()
+                            .ifPresent(dynamicBundle::add);
                 }
-                
+
                 if (!dynamicBundle.isEmpty()) {
-                    List<Product> uniqueBundleProducts = dynamicBundle.stream().distinct().collect(java.util.stream.Collectors.toList());
+                    List<Product> uniqueBundleProducts = dynamicBundle.stream().distinct().toList();
                     StringBuilder bundleName = new StringBuilder("Buy " + product.getName());
                     for (Product bp : uniqueBundleProducts) {
                         bundleName.append(" + ").append(bp.getName());
@@ -94,10 +89,10 @@ public class CandidateGeneratorService {
                 }
             }
 
-            // Generate UPGRADE actions
             if (product.getUpsell() != null) {
                 for (String upId : product.getUpsell()) {
-                    productRepository.findById(upId).ifPresent(upProd -> {
+                    Product upProd = productById.get(upId);
+                    if (upProd != null && upProd.getInventory() > 0) {
                         candidates.add(ActionCandidate.builder()
                                 .actionName("Upgrade to " + upProd.getName())
                                 .baseProduct(upProd)
@@ -106,11 +101,10 @@ public class CandidateGeneratorService {
                                 .type("UPGRADE")
                                 .status("CONSIDERED")
                                 .build());
-                    });
+                    }
                 }
             }
 
-            // Generate DISCOUNT actions
             if (merchant.getDiscountSteps() != null) {
                 for (Double step : merchant.getDiscountSteps()) {
                     if (step > 0.0) {
@@ -126,6 +120,7 @@ public class CandidateGeneratorService {
                 }
             }
         }
+
         List<ActionCandidate> uniqueCandidates = new ArrayList<>();
         java.util.Set<String> seenSignatures = new java.util.HashSet<>();
 
@@ -142,7 +137,27 @@ public class CandidateGeneratorService {
                 uniqueCandidates.add(c);
             }
         }
-        
-        return uniqueCandidates;
+
+        return uniqueCandidates.stream()
+                .limit(120)
+                .toList();
+    }
+
+    private boolean matchesCategory(Product product, String requestedCategory) {
+        if (product == null || product.getCategory() == null || requestedCategory == null) {
+            return true;
+        }
+        String productCategory = product.getCategory().toLowerCase();
+        String requested = requestedCategory.toLowerCase();
+        return productCategory.contains(requested) || requested.contains(productCategory);
+    }
+
+    private boolean matchesRequestedItem(Product product, String requestedItem) {
+        if (product == null || requestedItem == null) {
+            return false;
+        }
+        String item = requestedItem.toLowerCase();
+        return (product.getCategory() != null && product.getCategory().toLowerCase().contains(item))
+                || (product.getName() != null && product.getName().toLowerCase().contains(item));
     }
 }

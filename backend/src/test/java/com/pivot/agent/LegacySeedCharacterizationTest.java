@@ -226,6 +226,38 @@ class LegacySeedCharacterizationTest {
     }
 
     @Test
+    void capabilityServiceUsesStructuredFieldsAndCanonicalVocabulary() {
+        ProductCapabilityService capabilityService = new ProductCapabilityService();
+
+        Product gamingLaptop = Product.builder()
+                .productId("p-gaming")
+                .name("Gaming Laptop")
+                .category("laptop")
+                .price(95000)
+                .cost(76000)
+                .inventory(7)
+                .ramGb(32)
+                .storageGb(1024)
+                .weightKg(1.2)
+                .screenSizeInch(15.6)
+                .cpuTier("high")
+                .dedicatedGpu(true)
+                .userRating(4.7)
+                .ratingCount(200)
+                .batteryWh(82.0)
+                .useCases(List.of("gaming", "programming", "video editing"))
+                .build();
+
+        ProductCapability gamingCapability = capabilityService.evaluate(gamingLaptop);
+        assertEquals("HIGH", gamingCapability.getPerformance());
+        assertEquals("HIGH", gamingCapability.getPortability());
+        assertTrue(ProductCapabilityService.getAllowedUseCases().containsAll(gamingCapability.getUseCases()));
+
+        List<String> normalized = ProductCapabilityService.normalizeUseCases(List.of("gaming", "student", "not-valid", "programming"));
+        assertEquals(List.of("gaming", "student", "programming"), normalized);
+    }
+
+    @Test
     void candidateGeneratorAndPipelineFreezeCurrentLegacyBehavior() {
         CandidateGeneratorService candidateGeneratorService = new CandidateGeneratorService(productRepository);
         List<ActionCandidate> candidates = candidateGeneratorService.generateCandidates(baseState(), legacyMerchant);

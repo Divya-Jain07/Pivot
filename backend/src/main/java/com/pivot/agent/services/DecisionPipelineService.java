@@ -38,13 +38,14 @@ public class DecisionPipelineService {
         
         // 2. Enforce Policy
         List<ActionCandidate> passed = policyEngineService.enforcePolicy(baseCandidates, merchant, state);
-        
+
         List<AgentDecision.PolicyRejection> policyRejections = baseCandidates.stream()
                 .filter(c -> "REJECTED".equals(c.getStatus()))
                 .map(c -> AgentDecision.PolicyRejection.builder()
                         .action(c.getActionName())
                         .reason(c.getRejectionReason())
                         .build())
+                .limit(12)
                 .collect(Collectors.toList());
 
         // 3. Score & Select Best Laptop
