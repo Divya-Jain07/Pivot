@@ -191,7 +191,7 @@ Razorpay is the commercial backbone that makes the agent's decisions real, not j
 |---|---|
 | **Orders API** | Order amount is computed server-side from the stored `AgentDecision`, never passed from the frontend. The customer cannot tamper with what they pay. |
 | **Standard Checkout** | Opened client-side using the server-issued Razorpay order ID and publishable key. |
-| **Payment signature verification** | On `payment.success`, the backend verifies the HMAC-SHA256 signature (`razorpay_order_id + "\|" + razorpay_payment_id`) before updating any order status. |
+| **Webhook signature verification** | Every incoming webhook is verified with HMAC-SHA256 (`X-Razorpay-Signature`) against the webhook secret before any order status is updated. Unsigned or tampered requests are rejected. |
 | **Webhooks** | `payment.captured` event drives the canonical order status in MongoDB. The frontend result is treated as optimistic; the webhook is the source of truth. |
 
 All of this runs in **Razorpay test mode**. No real money moves, but the full API contract is exercised end-to-end.
@@ -279,7 +279,7 @@ frontend/
 - LLM-based intent extraction with a schema that structurally excludes any numeric scoring field
 - Policy engine that hard-rejects invalid discounts, low margins, and out-of-stock items, with a logged reason for every rejection
 - Decision engine that scores every surviving candidate live and picks `max(finalScore)`, never a hardcoded winner
-- Full Razorpay test-mode flow: order amount computed server-side from the stored decision, signature verified, webhook drives the actual order status
+- Full Razorpay test-mode flow: order amount computed server-side from the stored decision, webhook signature verified, webhook drives the actual order status
 - An audit/terminal panel in the frontend that renders the backend's decision trace directly, with no reformatting or invented numbers on the frontend
 
 ---
