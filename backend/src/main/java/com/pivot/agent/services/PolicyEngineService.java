@@ -102,6 +102,19 @@ public class PolicyEngineService {
         
         double finalPrice = totalPrice * (1.0 - (candidate.getDiscountPercent() / 100.0));
         if (finalPrice <= 0) return "Final price is zero or negative.";
+
+        if (state.budget() != null && state.budget() > 0) {
+            double maximumPrice = Boolean.TRUE.equals(state.isStrictBudget()) ? state.budget() : state.budget() + 10_000.0;
+            if (finalPrice > maximumPrice) {
+                return Boolean.TRUE.equals(state.isStrictBudget())
+                        ? "Final price exceeds the strict budget."
+                        : "Final price exceeds the flexible budget tolerance of 10000.";
+            }
+        }
+
+        if (hasRequiredTouchscreen(state) && !Boolean.TRUE.equals(candidate.getBaseProduct().getTouchScreen())) {
+            return "Required touchscreen capability is unavailable or unverified.";
+        }
         
         double margin = ((finalPrice - totalCost) / finalPrice) * 100.0;
         
@@ -110,5 +123,14 @@ public class PolicyEngineService {
         }
         
         return null;
+    }
+
+    private boolean hasRequiredTouchscreen(ExtractedState state) {
+        if (state.priorities() == null) {
+            return false;
+        }
+        return state.priorities().entrySet().stream()
+                .anyMatch(entry -> "touchscreen".equalsIgnoreCase(entry.getKey().replaceAll("[^a-zA-Z]", ""))
+                        && "REQUIRED".equalsIgnoreCase(entry.getValue()));
     }
 }

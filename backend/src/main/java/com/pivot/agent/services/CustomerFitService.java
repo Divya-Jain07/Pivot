@@ -5,6 +5,7 @@ import com.pivot.agent.models.ProductCapability;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class CustomerFitService {
@@ -22,10 +23,10 @@ public class CustomerFitService {
                 ))
                 .count();
             if (matchCount > 0) {
-                useCaseScore = Math.min(40.0, (double) matchCount / customerUseCases.size() * 40.0);
+                useCaseScore = Math.min(25.0, (double) matchCount / customerUseCases.size() * 25.0);
             }
         } else {
-            useCaseScore = 20.0; // neutral score if no use cases requested
+            useCaseScore = 12.5; // neutral score if no use cases requested
         }
         score += useCaseScore;
         
@@ -86,7 +87,48 @@ public class CustomerFitService {
             }
         }
         score += portScore;
+        score += calculateExplicitPreferenceFit(priorities, capability);
         
         return Math.min(100.0, score);
+    }
+
+    private double calculateExplicitPreferenceFit(Map<String, String> priorities, ProductCapability capability) {
+        if (priorities == null || priorities.isEmpty()) {
+            return 0.0;
+        }
+
+        double weightedFit = 0.0;
+        double totalWeight = 0.0;
+        for (Map.Entry<String, String> entry : priorities.entrySet()) {
+            String key = entry.getKey().replaceAll("[^a-zA-Z]", "").toLowerCase(Locale.ROOT);
+            String importance = entry.getValue() == null ? "" : entry.getValue().toUpperCase(Locale.ROOT);
+            double priorityWeight = switch (importance) {
+                case "HIGH" -> 1.0;
+                case "MEDIUM" -> 0.65;
+                case "LOW" -> 0.35;
+                default -> 0.0;
+            };
+            if (priorityWeight == 0.0) {
+                continue;
+            }
+
+            Double capabilityFit = switch (key) {
+                case "touchscreen" -> capability.getTouchScreen() == null ? 0.5 : capability.getTouchScreen() ? 1.0 : 0.0;
+                case "ram", "ramgb" -> scaledFit(capability.getRamGb(), 16.0);
+                case "storage", "storagegb" -> scaledFit(capability.getStorageGb(), 1024.0);
+                case "battery", "batterywh" -> scaledFit(capability.getBatteryWh(), 60.0);
+                default -> null;
+            };
+            if (capabilityFit != null) {
+                weightedFit += capabilityFit * priorityWeight;
+                totalWeight += priorityWeight;
+            }
+        }
+
+        return totalWeight == 0.0 ? 0.0 : 70.0 * weightedFit / totalWeight;
+    }
+
+    private double scaledFit(Number value, double target) {
+        return value == null ? 0.5 : Math.min(1.0, Math.max(0.0, value.doubleValue() / target));
     }
 }

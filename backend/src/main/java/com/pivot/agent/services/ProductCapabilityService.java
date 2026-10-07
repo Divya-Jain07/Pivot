@@ -61,6 +61,10 @@ public class ProductCapabilityService {
                 .productId(product.getProductId())
                 .performance(performance)
                 .portability(portability)
+                .ramGb(product.getRamGb())
+                .storageGb(product.getStorageGb())
+                .batteryWh(product.getBatteryWh())
+                .touchScreen(product.getTouchScreen())
                 .useCases(useCases)
                 .build();
     }

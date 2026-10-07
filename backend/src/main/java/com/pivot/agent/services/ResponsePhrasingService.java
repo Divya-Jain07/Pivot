@@ -91,8 +91,22 @@ public class ResponsePhrasingService {
             if (decision.getExtractedState() != null) {
                 String stage = decision.getExtractedState().decisionStage();
                 java.util.List<String> useCases = decision.getExtractedState().useCases();
-                if ("DISCOVERY".equalsIgnoreCase(stage) || (useCases == null || useCases.isEmpty())) {
-                    stageContext = "STAGE CONTEXT: The customer is in the DISCOVERY phase. They haven't provided enough information (like use cases). DO NOT forcefully pitch the recommendation. Instead, politely ask what they will mainly use the laptop for (e.g. studying, programming, gaming, business) to give them a better recommendation.";
+                boolean missingUseCase = useCases == null || useCases.isEmpty();
+                boolean missingBudget = decision.getExtractedState().budget() == null
+                    && decision.getExtractedState().isStrictBudget() == null;
+                if ("DISCOVERY".equalsIgnoreCase(stage) || missingUseCase || missingBudget) {
+                    StringBuilder discoveryQuestions = new StringBuilder();
+                    if (missingUseCase) {
+                        discoveryQuestions.append("what they will mainly use the laptop for (e.g. studying, programming, gaming, or business)");
+                    }
+                    if (missingBudget) {
+                        if (!discoveryQuestions.isEmpty()) {
+                            discoveryQuestions.append(" and ");
+                        }
+                        discoveryQuestions.append("their comfortable maximum budget");
+                    }
+                    stageContext = "STAGE CONTEXT: The customer is in the DISCOVERY phase. DO NOT pitch a product yet. Politely ask for "
+                            + discoveryQuestions + ". If they do not have a fixed budget, let them say so and continue without one.";
                 } else if ("ACCESSORY_DISCOVERY".equalsIgnoreCase(stage)) {
                     String allAccessories = productRepository.findAll().stream()
                         .filter(prod -> "accessory".equalsIgnoreCase(prod.getCategory()))

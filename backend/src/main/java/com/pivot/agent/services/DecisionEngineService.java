@@ -21,11 +21,11 @@ public class DecisionEngineService {
         this.productCapabilityService = productCapabilityService;
     }
 
-    private static final double CUSTOMER_FIT_WEIGHT = 0.40;
-    private static final double BUDGET_FIT_WEIGHT = 0.20;
-    private static final double MERCHANT_VALUE_WEIGHT = 0.20;
-    private static final double STRATEGIC_VALUE_WEIGHT = 0.10;
-    private static final double OFFER_SUITABILITY_WEIGHT = 0.10;
+    private static final double CUSTOMER_FIT_WEIGHT = 0.65;
+    private static final double BUDGET_FIT_WEIGHT = 0.15;
+    private static final double MERCHANT_VALUE_WEIGHT = 0.10;
+    private static final double STRATEGIC_VALUE_WEIGHT = 0.05;
+    private static final double OFFER_SUITABILITY_WEIGHT = 0.05;
 
     public ActionCandidate selectBestCandidate(List<ActionCandidate> passedCandidates, ExtractedState state, Merchant merchant) {
         if (passedCandidates.isEmpty()) return null;
@@ -86,16 +86,9 @@ public class DecisionEngineService {
         }
         price = price * (1.0 - (candidate.getDiscountPercent() / 100.0));
         
-        double penalty = 0.0;
-        if (price > budget) {
-            penalty = ((price - budget) / budget) * 100.0;
-        }
-        double fit = 100.0 - penalty;
-        
-        if (state.isStrictBudget() != null && state.isStrictBudget() && price > budget) {
-            fit -= 100.0;
-        }
-        
+        double lowerAnchor = budget - 30_000.0;
+        double upperAnchor = budget + 10_000.0;
+        double fit = ((upperAnchor - price) / (upperAnchor - lowerAnchor)) * 100.0;
         return Math.max(0.0, Math.min(100.0, fit));
     }
 

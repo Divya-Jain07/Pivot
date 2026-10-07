@@ -28,6 +28,7 @@ public class Product {
     private Double screenSizeInch;
     private String cpuTier;
     private Boolean dedicatedGpu;
+    private Boolean touchScreen;
     private Double userRating;
     private Integer ratingCount;
     private Double batteryWh;

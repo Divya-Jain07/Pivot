@@ -21,11 +21,18 @@ public class CandidateGeneratorService {
 
     public List<ActionCandidate> generateCandidates(ExtractedState state, Merchant merchant) {
         List<Product> catalog = productRepository.findAll();
+        double maximumFinalPrice = maximumAllowedPrice(state);
+        double maximumDiscount = merchant.getMaxDiscountPercent();
+        double maximumBasePrice = maximumDiscount >= 100.0
+            ? maximumFinalPrice
+            : maximumFinalPrice / (1.0 - maximumDiscount / 100.0);
         List<Product> products = catalog.stream()
                 .filter(product -> product != null && product.getInventory() > 0)
                 .filter(product -> state.category() == null || matchesCategory(product, state.category()))
-                .filter(product -> state.budget() == null || product.getPrice() <= state.budget() * 1.5)
-                .sorted(java.util.Comparator.comparing(Product::getPrice))
+            .filter(product -> product.getPrice() <= maximumBasePrice)
+                .sorted(java.util.Comparator
+                    .comparingInt((Product product) -> hasPreferredTouchscreen(product, state) ? 0 : 1)
+                    .thenComparing(Product::getPrice))
                 .limit(MAX_BASE_CANDIDATES)
                 .toList();
 
@@ -141,6 +148,24 @@ public class CandidateGeneratorService {
         return uniqueCandidates.stream()
                 .limit(120)
                 .toList();
+    }
+
+    private double maximumAllowedPrice(ExtractedState state) {
+        Double budget = state.budget();
+        if (budget == null || budget <= 0) {
+            return Double.POSITIVE_INFINITY;
+        }
+        return Boolean.TRUE.equals(state.isStrictBudget()) ? budget : budget + 10_000.0;
+    }
+
+    private boolean hasPreferredTouchscreen(Product product, ExtractedState state) {
+        if (state.priorities() == null || !Boolean.TRUE.equals(product.getTouchScreen())) {
+            return false;
+        }
+        return state.priorities().entrySet().stream()
+                .anyMatch(entry -> "touchscreen".equalsIgnoreCase(entry.getKey().replaceAll("[^a-zA-Z]", ""))
+                        && entry.getValue() != null
+                        && !"NONE".equalsIgnoreCase(entry.getValue()));
     }
 
     private boolean matchesCategory(Product product, String requestedCategory) {

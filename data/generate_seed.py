@@ -105,7 +105,7 @@ def derive_use_cases(row: dict[str, Any]) -> list[str]:
         use_cases.append("gaming")
     if dedicated_gpu and ram >= 16 and float(row.get("screen_size", 0) or 0) >= 14:
         use_cases.append("video editing")
-    if ram >= 16 or (ram >= 8 and cpu_tier in {"medium", "high"}):
+    if (ram >= 16 and cpu_tier in {"medium", "high"}) or (ram >= 8 and cpu_tier == "high") or dedicated_gpu:
         use_cases.append("programming")
     if ram >= 16:
         use_cases.append("multitasking")
@@ -172,7 +172,7 @@ def build_seed() -> dict[str, Any]:
     df["weight_kg"] = pd.to_numeric(df["weight_kg"], errors="coerce")
     df["screen_size"] = pd.to_numeric(df["screen_size"], errors="coerce")
     df["battery_Wh"] = pd.to_numeric(df["battery_Wh"], errors="coerce")
-    df["touch_screen"] = pd.to_numeric(df["touch_screen"], errors="coerce").fillna(0).astype(int)
+    df["touch_screen"] = pd.to_numeric(df["touch_screen"], errors="coerce")
     df["resolution_WIDTH"] = pd.to_numeric(df["resolution_WIDTH"], errors="coerce")
     df["resolution_HEIGHT"] = pd.to_numeric(df["resolution_HEIGHT"], errors="coerce")
     df["display_width"] = df[["resolution_WIDTH", "resolution_HEIGHT"]].max(axis=1)
@@ -298,12 +298,23 @@ def build_seed() -> dict[str, Any]:
             "price": int(float(row["price"])),
             "cost": int(float(row["cost"])),
             "inventory": int(row["inventory"]),
+            "ramGb": int(float(row["ram_gb"])),
+            "storageGb": int(float(row["storage_gb"])),
+            "weightKg": float(row["weight_kg"]),
+            "screenSizeInch": float(row["screen_size"]),
+            "cpuTier": str(row["cpu_tier"]).lower(),
+            "dedicatedGpu": bool(row["dedicated_gpu"]),
+            "batteryWh": float(row["battery_Wh"]) if pd.notna(row["battery_Wh"]) else None,
+            "touchScreen": bool(int(row["touch_screen"])) if pd.notna(row["touch_screen"]) else None,
+            "userRating": float(row["rating"]),
+            "ratingCount": int(row["votes"]),
             "features": [
                 f"{str(row.get('processor_name', 'CPU')).strip() or 'CPU'} processor",
                 f"{int(float(row.get('ram_gb', 0) or 0))}GB RAM",
                 f"{int(float(row.get('storage_gb', 0) or 0))}GB storage",
                 f"{float(row.get('screen_size', 0) or 0):.1f}-inch display",
                 f"{resolution_label(float(row.get('display_width', 0) or 0), float(row.get('display_height', 0) or 0))} display",
+                "Touchscreen" if bool(row["touch_screen"]) else None,
                 f"{str(row.get('graphics_brand', '')).strip() or 'Integrated'} graphics",
                 f"{float(row.get('weight_kg', 0) or 0):.1f}kg weight",
                 f"{float(row.get('battery_Wh', 0) or 0):.1f}Wh battery" if pd.notna(row.get('battery_Wh')) and row.get('battery_Wh') not in [None, ''] else None,

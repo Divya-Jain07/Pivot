@@ -187,6 +187,18 @@ function App() {
             `final_price       ₹${selected.finalAmount}`
           ]
         });
+
+        const topMatches = [...decision.candidates]
+          .filter(candidate => candidate.status !== 'REJECTED')
+          .sort((left, right) => right.finalScore - left.finalScore)
+          .slice(0, 3);
+        logs.push({
+          step: "05. TOP MATCHES",
+          content: topMatches.flatMap((candidate, index) => [
+            `${index + 1}. ${candidate.action} | score ${candidate.finalScore.toFixed(2)}`,
+            `   Why: ${(candidate.reasons || []).join('; ') || 'Best overall fit among eligible options'}`
+          ])
+        });
         
         const isCheckout = decision.extractedState?.decisionStage === 'CHECKOUT' || decision.extractedState?.isReadyToCheckout;
         if (isCheckout) {

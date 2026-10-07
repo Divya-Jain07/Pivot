@@ -51,7 +51,10 @@ public class DecisionPipelineService {
         // 3. Score & Select Best Laptop
         ActionCandidate bestAction = decisionEngineService.selectBestCandidate(passed, state, merchant);
         
-        boolean isDiscovery = "DISCOVERY".equalsIgnoreCase(state.decisionStage()) || (state.useCases() == null || state.useCases().isEmpty());
+        boolean isDiscovery = "DISCOVERY".equalsIgnoreCase(state.decisionStage())
+            || (state.budget() == null && state.isStrictBudget() == null)
+            || state.useCases() == null
+            || state.useCases().isEmpty();
         if (isDiscovery) {
             bestAction = null;
             passed.forEach(c -> {
@@ -139,12 +142,13 @@ public class DecisionPipelineService {
                                 .offerSuitability(c.getOfferSuitability())
                                 .build())
                         .weights(Map.of(
-                                "customerFit", 0.40,
-                                "budgetFit", 0.20,
-                                "merchantValue", 0.20,
-                                "strategicValue", 0.10,
-                                "offerSuitability", 0.10
+                            "customerFit", 0.65,
+                            "budgetFit", 0.15,
+                            "merchantValue", 0.10,
+                            "strategicValue", 0.05,
+                            "offerSuitability", 0.05
                         ))
+                        .reasons(buildReasons(c, state))
                         .build();
                 })
                 .collect(Collectors.toList());
@@ -168,5 +172,45 @@ public class DecisionPipelineService {
                 .build();
 
         return agentDecisionRepository.save(decision);
+    }
+
+    private List<String> buildReasons(ActionCandidate candidate, ExtractedState state) {
+        List<String> reasons = new java.util.ArrayList<>();
+        var product = candidate.getBaseProduct();
+
+        if (state.useCases() != null && product.getUseCases() != null) {
+            List<String> matchingUseCases = state.useCases().stream()
+                    .filter(requested -> product.getUseCases().stream()
+                            .anyMatch(available -> available.equalsIgnoreCase(requested)))
+                    .distinct()
+                    .toList();
+            if (!matchingUseCases.isEmpty()) {
+                reasons.add("Catalog use cases match: " + String.join(", ", matchingUseCases));
+            }
+        }
+
+        if (state.priorities() != null && state.priorities().entrySet().stream()
+                .anyMatch(entry -> "touchscreen".equalsIgnoreCase(entry.getKey().replaceAll("[^a-zA-Z]", ""))
+                        && !"LOW".equalsIgnoreCase(entry.getValue()))
+                && Boolean.TRUE.equals(product.getTouchScreen())) {
+            reasons.add("Has the touchscreen you prefer");
+        }
+
+        double finalPrice = product.getPrice();
+        if (candidate.getBundledProducts() != null) {
+            finalPrice += candidate.getBundledProducts().stream().mapToDouble(com.pivot.agent.models.Product::getPrice).sum();
+        }
+        finalPrice *= 1.0 - candidate.getDiscountPercent() / 100.0;
+        if (state.budget() != null && finalPrice <= state.budget()) {
+            reasons.add("Within your stated budget");
+        } else if (state.budget() != null && !Boolean.TRUE.equals(state.isStrictBudget())
+                && finalPrice <= state.budget() + 10_000.0) {
+            reasons.add("Within your flexible budget range");
+        }
+
+        if (reasons.isEmpty()) {
+            reasons.add("Best overall fit among eligible options");
+        }
+        return reasons.stream().limit(3).toList();
     }
 }

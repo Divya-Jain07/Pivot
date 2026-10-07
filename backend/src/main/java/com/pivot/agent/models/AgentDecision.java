@@ -40,6 +40,7 @@ public class AgentDecision {
         private double finalAmount;
         private Factors factors;
         private Map<String, Double> weights;
+        private List<String> reasons;
         private double finalScore;
         private String status; // "SELECTED", "REJECTED", "CONSIDERED"
         private boolean preferenceCompromised;

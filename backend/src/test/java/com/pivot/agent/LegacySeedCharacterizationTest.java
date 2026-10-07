@@ -257,6 +257,196 @@ class LegacySeedCharacterizationTest {
         assertEquals(List.of("gaming", "student", "programming"), normalized);
     }
 
+        @Test
+        void explicitTouchscreenPreferenceImprovesCustomerFitAndRequiredTouchscreenIsEnforced() {
+        Product touchscreenLaptop = Product.builder()
+            .productId("touchscreen-laptop")
+            .name("Touchscreen Laptop")
+            .category("laptop")
+            .price(50000)
+            .cost(40000)
+            .inventory(5)
+            .touchScreen(true)
+            .ramGb(16)
+            .storageGb(512)
+            .batteryWh(60.0)
+            .useCases(List.of("student"))
+            .build();
+        Product standardLaptop = Product.builder()
+            .productId("standard-laptop")
+            .name("Standard Laptop")
+            .category("laptop")
+            .price(50000)
+            .cost(40000)
+            .inventory(5)
+            .touchScreen(false)
+            .ramGb(16)
+            .storageGb(512)
+            .batteryWh(60.0)
+            .useCases(List.of("student"))
+            .build();
+        ExtractedState preferenceState = new ExtractedState(
+            "touchscreen preferred", "laptop", 50000.0, true, List.of("student"), "student",
+            Map.of("touchscreen", "HIGH"), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+        CustomerFitService customerFitService = new CustomerFitService();
+        ProductCapabilityService capabilityService = new ProductCapabilityService();
+
+        double touchscreenFit = customerFitService.calculateFit(preferenceState, capabilityService.evaluate(touchscreenLaptop));
+        double standardFit = customerFitService.calculateFit(preferenceState, capabilityService.evaluate(standardLaptop));
+        assertEquals(35.0, touchscreenFit - standardFit);
+
+        ExtractedState requiredState = new ExtractedState(
+            "touchscreen required", "laptop", 50000.0, true, List.of("student"), "student",
+            Map.of("touchscreen", "REQUIRED"), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+        ActionCandidate standardCandidate = ActionCandidate.builder()
+            .actionName("Buy Standard Laptop")
+            .baseProduct(standardLaptop)
+            .bundledProducts(List.of())
+            .discountPercent(0.0)
+            .type("BASE")
+            .build();
+
+        assertTrue(new PolicyEngineService().enforcePolicy(List.of(standardCandidate), legacyMerchant, requiredState).isEmpty());
+        assertEquals("Required touchscreen capability is unavailable or unverified.", standardCandidate.getRejectionReason());
+        }
+
+        @Test
+        void candidateGenerationUsesStrictBudgetAndFlexibleTenThousandTolerance() {
+        Product laptop = Product.builder()
+            .productId("budget-laptop")
+            .name("Budget Laptop")
+            .category("laptop")
+                .price(55000)
+                .cost(40000)
+            .inventory(5)
+            .build();
+        when(productRepository.findAll()).thenReturn(List.of(laptop));
+        CandidateGeneratorService candidateGeneratorService = new CandidateGeneratorService(productRepository);
+
+        ExtractedState flexibleState = new ExtractedState(
+            "flexible", "laptop", 50000.0, false, List.of("business"), "business",
+            Map.of(), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+        ExtractedState strictState = new ExtractedState(
+            "strict", "laptop", 50000.0, true, List.of("business"), "business",
+            Map.of(), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+
+        List<ActionCandidate> flexibleCandidates = candidateGeneratorService.generateCandidates(flexibleState, legacyMerchant);
+        assertTrue(flexibleCandidates.stream()
+            .anyMatch(candidate -> "budget-laptop".equals(candidate.getBaseProduct().getProductId())));
+        List<ActionCandidate> strictCandidates = candidateGeneratorService.generateCandidates(strictState, legacyMerchant);
+        assertTrue(strictCandidates.stream().anyMatch(candidate -> candidate.getDiscountPercent() == 10.0));
+        List<ActionCandidate> strictPassed = new PolicyEngineService().enforcePolicy(strictCandidates, legacyMerchant, strictState);
+        assertFalse(strictPassed.isEmpty());
+        assertTrue(strictPassed.stream().allMatch(candidate -> candidate.getDiscountPercent() > 0.0
+            && candidate.getBaseProduct().getPrice() * (1.0 - candidate.getDiscountPercent() / 100.0) <= strictState.budget()));
+        }
+
+        @Test
+        void candidateLimitRetainsProductsMatchingTouchscreenPreference() {
+        List<Product> catalog = new ArrayList<>();
+        for (int index = 0; index < 40; index++) {
+            catalog.add(Product.builder()
+                .productId("cheap-" + index)
+                .name("Cheap Laptop " + index)
+                .category("laptop")
+                .price(30000 + index * 500)
+                .cost(25000)
+                .inventory(5)
+                .touchScreen(false)
+                .build());
+        }
+        Product touchscreenProduct = Product.builder()
+            .productId("touchscreen-58999")
+            .name("Touchscreen Laptop")
+            .category("laptop")
+            .price(58999)
+            .cost(48000)
+            .inventory(5)
+            .touchScreen(true)
+            .build();
+        catalog.add(touchscreenProduct);
+        when(productRepository.findAll()).thenReturn(catalog);
+        ExtractedState state = new ExtractedState(
+            "touchscreen preferred", "laptop", 60000.0, true, List.of("student"), "student",
+            Map.of("touchscreen", "HIGH"), List.of(), "high", List.of(), List.of(), null,
+            "LAPTOP_RECOMMENDATION", false);
+
+        List<ActionCandidate> candidates = new CandidateGeneratorService(productRepository)
+            .generateCandidates(state, legacyMerchant);
+
+        assertTrue(candidates.stream().filter(candidate -> "BASE".equals(candidate.getType()))
+            .anyMatch(candidate -> "touchscreen-58999".equals(candidate.getBaseProduct().getProductId())));
+        }
+
+        @Test
+        void highTouchscreenPreferenceCanOutrankCheaperNonTouchscreenLaptop() {
+        Product cheapLaptop = Product.builder()
+            .productId("cheap-non-touchscreen")
+            .name("Cheap Laptop")
+            .category("laptop")
+            .price(25990)
+            .cost(20000)
+            .inventory(5)
+            .touchScreen(false)
+            .useCases(List.of("student"))
+            .tags(List.of("clear_overstock"))
+            .build();
+        Product touchscreenLaptop = Product.builder()
+            .productId("touchscreen-under-budget")
+            .name("Touchscreen Laptop")
+            .category("laptop")
+            .price(58999)
+            .cost(45329)
+            .inventory(5)
+            .touchScreen(true)
+            .useCases(List.of("student"))
+            .tags(List.of("clear_overstock"))
+            .build();
+        ExtractedState state = new ExtractedState(
+            "touchscreen preferred", "laptop", 60000.0, true, List.of("student"), "student",
+            Map.of("touchscreen", "HIGH"), List.of(), "high", List.of(), List.of(), null,
+            "LAPTOP_RECOMMENDATION", false);
+        ActionCandidate cheapCandidate = ActionCandidate.builder()
+            .actionName("Buy Cheap Laptop").baseProduct(cheapLaptop).bundledProducts(List.of())
+            .discountPercent(0.0).type("BASE").build();
+        ActionCandidate touchscreenCandidate = ActionCandidate.builder()
+            .actionName("Buy Touchscreen Laptop").baseProduct(touchscreenLaptop).bundledProducts(List.of())
+            .discountPercent(0.0).type("BASE").build();
+
+        ActionCandidate winner = new DecisionEngineService(new CustomerFitService(), new ProductCapabilityService())
+            .selectBestCandidate(List.of(cheapCandidate, touchscreenCandidate), state, legacyMerchant);
+
+        assertEquals("touchscreen-under-budget", winner.getBaseProduct().getProductId());
+        }
+
+        @Test
+        void generatedCatalogRecommendsAvailableTouchscreenForStudentUnderBudget() throws Exception {
+        SeedData seed = mapper.readValue(loadResource("dataseed.json"), SeedData.class);
+        when(productRepository.findAll()).thenReturn(seed.products);
+        when(merchantRepository.findAll()).thenReturn(List.of(seed.merchant));
+        ExtractedState state = new ExtractedState(
+            "student wants touchscreen", "laptop", 60000.0, true, List.of("student"), "student",
+            Map.of("touchscreen", "HIGH"), List.of(), "high", List.of(), List.of(), null,
+            "LAPTOP_RECOMMENDATION", false);
+        DecisionPipelineService pipelineService = new DecisionPipelineService(
+            new CandidateGeneratorService(productRepository),
+            new PolicyEngineService(),
+            new DecisionEngineService(new CustomerFitService(), new ProductCapabilityService()),
+            merchantRepository,
+            agentDecisionRepository);
+
+        AgentDecision decision = pipelineService.runPipeline("touchscreen under 60000 for studying", state);
+
+        assertNotNull(decision.getSelectedAction());
+        assertTrue(decision.getSelectedAction().getReasons().contains("Has the touchscreen you prefer"));
+        Product selected = seed.products.stream()
+            .filter(product -> product.getProductId().equals(decision.getSelectedAction().getProductId()))
+            .findFirst()
+            .orElseThrow();
+        assertEquals(Boolean.TRUE, selected.getTouchScreen());
+        assertTrue(decision.getSelectedAction().getFinalAmount() <= state.budget());
+        }
+
     @Test
     void candidateGeneratorAndPipelineFreezeCurrentLegacyBehavior() {
         CandidateGeneratorService candidateGeneratorService = new CandidateGeneratorService(productRepository);
@@ -291,6 +481,32 @@ class LegacySeedCharacterizationTest {
         assertNotNull(decision);
         assertNull(decision.getSelectedAction());
         assertTrue(decision.getCandidates().size() >= 1);
+        assertFalse(decision.getCandidates().get(0).getReasons().isEmpty());
+    }
+
+    @Test
+    void pipelineAsksForBudgetBeforeSelectingWhenBudgetIsMissing() {
+        CandidateGeneratorService candidateGeneratorService = new CandidateGeneratorService(productRepository);
+        DecisionPipelineService pipelineService = new DecisionPipelineService(
+                candidateGeneratorService,
+                new PolicyEngineService(),
+                new DecisionEngineService(new CustomerFitService(), new ProductCapabilityService()),
+                merchantRepository,
+                agentDecisionRepository);
+        ExtractedState noBudgetState = new ExtractedState(
+                "programming laptop", "laptop", null, null, List.of("programming"), "programming",
+                Map.of(), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+
+        AgentDecision decision = pipelineService.runPipeline("I need a laptop for programming", noBudgetState);
+
+        assertNull(decision.getSelectedAction());
+        assertTrue(decision.getCandidates().stream().allMatch(candidate -> "CONSIDERED".equals(candidate.getStatus())));
+
+        ExtractedState noBudgetLimitState = new ExtractedState(
+            "no budget limit", "laptop", null, false, List.of("programming"), "programming",
+            Map.of(), List.of(), "medium", List.of(), List.of(), null, "LAPTOP_RECOMMENDATION", false);
+        AgentDecision flexibleDecision = pipelineService.runPipeline("I have no fixed budget", noBudgetLimitState);
+        assertNotNull(flexibleDecision.getSelectedAction());
     }
 
     private ExtractedState baseState() {

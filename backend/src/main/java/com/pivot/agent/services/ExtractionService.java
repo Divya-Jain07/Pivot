@@ -33,7 +33,8 @@ public class ExtractionService {
                               "- Return ONLY the requested fields. DO NOT include any numeric score fields like fitScore or confidence.\n" +
                               "- customerIntentReasoning must be your brief chain of thought before emitting the state.\n" +
                               "- useCases MUST be chosen strictly from this canonical list: [{canonicalUseCases}].\n" +
-                              "- priorities is a map of attributes to importance (HIGH, MEDIUM, LOW). E.g. 'performance': 'HIGH'.\n" +
+                              "- Do not infer a numeric budget. If no budget or explicit no-limit preference is stated, leave budget and isStrictBudget null. If the customer explicitly says they have no fixed budget or no spending cap, leave budget null and set isStrictBudget to false.\n" +
+                              "- priorities is the map for positive preferences; use supported keys performance, portability, touchscreen, ram, storage, or battery and values HIGH, MEDIUM, or LOW. Use REQUIRED only when the customer explicitly says a touchscreen is a must-have.\n" +
                               "- decisionStage should be one of DISCOVERY, LAPTOP_RECOMMENDATION, COMPARISON, ACCESSORY_DISCOVERY, CHECKOUT. Rule: start at DISCOVERY. Move to LAPTOP_RECOMMENDATION when you have enough info (like use cases). Move to ACCESSORY_DISCOVERY when the user agrees to the laptop or expresses strong positive sentiment/intent to buy it (even if asking for a discount). Move to CHECKOUT when they are ready to pay.\n" +
                               "- isReadyToCheckout is true if the customer explicitly says they are ready to pay, buy, checkout, or place the order.\n" +
                               "- requestedItems is a list of specific products, accessories, or categories the customer explicitly asks for (e.g., keyboard, mouse, bag).\n" +
@@ -77,6 +78,11 @@ public class ExtractionService {
         }
 
         java.util.Map<String, String> priorities = previousState != null && previousState.priorities() != null ? new java.util.HashMap<>(previousState.priorities()) : new java.util.HashMap<>();
+        if (lower.contains("touchscreen") || lower.contains("touch screen")) {
+                boolean required = lower.contains("must") || lower.contains("require") || lower.contains("need")
+                    || lower.contains("non-negotiable") || lower.contains("non negotiable") || lower.contains("essential");
+            priorities.put("touchscreen", required ? "REQUIRED" : "HIGH");
+        }
         if (useCases.contains("programming") || useCases.contains("gaming") || useCases.contains("video editing")) {
             priorities.put("performance", "HIGH");
         }
@@ -101,6 +107,15 @@ public class ExtractionService {
         negativePreferences = negativePreferences.stream().distinct().toList();
 
         Double budget = previousState != null ? previousState.budget() : null;
+        Boolean isStrictBudget = previousState != null ? previousState.isStrictBudget() : null;
+        boolean explicitlyFlexibleBudget = lower.contains("no fixed budget") || lower.contains("no set budget")
+            || lower.contains("no budget limit") || lower.contains("without a budget")
+            || lower.contains("don't have a budget") || lower.contains("do not have a budget")
+            || lower.contains("budget is flexible") || lower.contains("flexible budget");
+        if (explicitlyFlexibleBudget) {
+            budget = null;
+            isStrictBudget = false;
+        }
         if (budget == null) {
             java.util.regex.Matcher matcher = java.util.regex.Pattern.compile("(?:under|below|within|budget|upto|up to|rs\\.?|₹)?\\s?(\\d+(?:\\.\\d+)?)\\s?(k|000)?").matcher(lower);
             if (matcher.find()) {
@@ -122,7 +137,7 @@ public class ExtractionService {
                 "Fallback extraction after AI quota/rate-limit failure.",
                 previousState != null ? previousState.category() : "laptop",
                 budget,
-                previousState != null ? previousState.isStrictBudget() : null,
+                isStrictBudget,
                 useCases,
                 useCases.isEmpty() ? null : useCases.get(0),
                 priorities,

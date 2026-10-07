@@ -14,5 +14,9 @@ public class ProductCapability {
     private String productId;
     private String performance; // HIGH, MEDIUM, LOW, UNKNOWN
     private String portability; // HIGH, MEDIUM, LOW, UNKNOWN
+    private Integer ramGb;
+    private Integer storageGb;
+    private Double batteryWh;
+    private Boolean touchScreen;
     private List<String> useCases;
 }
